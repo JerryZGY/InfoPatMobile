@@ -18,3 +18,4 @@ insecure                # Allow all DB writes from clients (for prototyping)
 urigo:angular2-meteor
 fourseven:scss
 materialize:materialize
+francocatena:compass

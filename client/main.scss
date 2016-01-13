@@ -1,0 +1,21 @@
+@import "{francocatena:compass}/compass";
+
+.logo {
+    margin: 50px auto;
+    width: 370px;
+    height: 200px;
+    position: relative;
+    background-image: url("logo.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+}
+
+nav {
+    width: 370px;
+    margin: auto;
+    background-color: #74B73F;
+}
+
+.material-icons {
+    @include user-select(none);
+}

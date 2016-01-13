@@ -9,6 +9,8 @@
     "useCache": true
   },
   "files": [
-    "typings/tsd.d.ts"
+    "typings/tsd.d.ts",
+    "client/app.ts",
+    "client/main.ts"
   ]
 }
