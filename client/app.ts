@@ -1,10 +1,7 @@
 import {bootstrap} from 'angular2/bootstrap';
 import {Component, View, NgZone, provide} from 'angular2/core';
 import {ROUTER_PROVIDERS, ROUTER_DIRECTIVES, RouteConfig, APP_BASE_HREF} from 'angular2/router';
-
-//Other pages:
 import {Main} from 'client/main';
-import {Result} from 'client/result';
 
 @Component({
     selector: 'app'
