@@ -1,0 +1,19 @@
+$flexbox-support: -moz, -webkit, -ms, not -o, not -khtml;
+
+@mixin display-flex {
+  @include experimental-value(display, flex, $flexbox-support...);
+}
+
+@mixin flex-flow($flow) {
+  @include experimental(flex-flow, $flow, $flexbox-support...);
+}
+
+@function compact($vars...) {
+    $list: ();
+    @each $var in $vars {
+        @if $var {
+            $list: append($list, $var, comma);
+        }
+    }
+    @return $list;
+}

@@ -1,16 +1,51 @@
-<div class="content-wrapper">
-    <div class="logo-wrapper">
-        <div class="logo"></div>
-    </div>
-    <nav>
-        <div class="nav-wrapper">
-            <form>
-                <div class="input-field">
-                    <input id="search" type="search">
-                    <label for="search"><i class="material-icons">search</i></label>
-                    <i class="material-icons">close</i>
-                </div>
-            </form>
+<div class="content-wrapper center" [ngClass]="{active:isSearched, focus:isFocus, searching:isSearching}">
+    <div class="logo"></div>
+    <form class="search-wrapper" (submit)="search(text.value)">
+        <div class="material-icons">search</div>
+        <div class="material-icons settings-button waves-effect waves-light" (click)="isActive=true">settings</div>
+        <input #text id="search" (focus)="isFocus=true" (blur)="isFocus=false">
+        <div class="progress">
+            <div class="indeterminate"></div>
         </div>
-    </nav>
+    </form>
+    <div class="flag-wrapper" [ngClass]="{active:isActive}">
+        <i class="flag-icon flag-icon-tw waves-effect waves-light" [ngClass]="{deactivate:tw}" (click)="tw=!tw"></i>
+        <i class="flag-icon flag-icon-us waves-effect waves-light" [ngClass]="{deactivate:us}" (click)="us=!us"></i>
+        <i class="flag-icon flag-icon-eu waves-effect waves-light" [ngClass]="{deactivate:eu}" (click)="eu=!eu"></i>
+        <i class="flag-icon flag-icon-cn waves-effect waves-light" [ngClass]="{deactivate:cn}" (click)="cn=!cn"></i>
+        <i class="flag-icon flag-icon-jp waves-effect waves-light" [ngClass]="{deactivate:jp}" (click)="jp=!jp"></i>
+        <i class="flag-icon flag-icon-kr waves-effect waves-light" [ngClass]="{deactivate:kr}" (click)="kr=!kr"></i>
+        <i class="flag-icon flag-icon-kr waves-effect waves-light" [ngClass]="{deactivate:kr}" (click)="kr=!kr"></i>
+        <i class="flag-icon flag-icon-kr waves-effect waves-light" [ngClass]="{deactivate:kr}" (click)="kr=!kr"></i>
+    </div>
 </div>
+<div class="result-wrapper" [ngClass]="{active:isSearched}">
+    <nav>
+        <img class="brand-logo center" src="logo.png" (click)="reload()">
+        <i class="material-icons center waves-effect waves-light" (click)="reload()">navigate_before</i>
+    </nav>
+    <ul class="collection">
+        <li class="collection-item avatar">
+            <i class="material-icons circle">folder</i>
+            <span class="title">頁面顯示方式之調整方法、行動電子裝置，與電腦程式產品</span>
+            <p>I366130
+                <br>2012/06/11</p>
+            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+        </li>
+        <li class="collection-item avatar">
+            <i class="material-icons circle green">insert_chart</i>
+            <span class="title">手持電子裝置與其圖形化使用者介面之切換方法</span>
+            <p>I366125
+                <br>2012/06/11</p>
+            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+        </li>
+        <li class="collection-item avatar">
+            <i class="material-icons circle red">play_arrow</i>
+            <span class="title">手持式電子裝置</span>
+            <p>I365701
+                <br>2012/06/01</p>
+            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+        </li>
+    </ul>
+</div>
+<div class="overlay" [ngClass]="{active:isActive}" (click)="isActive=false"></div>
