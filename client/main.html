@@ -15,36 +15,48 @@
         <i class="flag-icon flag-icon-cn waves-effect waves-light" [ngClass]="{deactivate:cn}" (click)="cn=!cn"></i>
         <i class="flag-icon flag-icon-jp waves-effect waves-light" [ngClass]="{deactivate:jp}" (click)="jp=!jp"></i>
         <i class="flag-icon flag-icon-kr waves-effect waves-light" [ngClass]="{deactivate:kr}" (click)="kr=!kr"></i>
-        <i class="flag-icon flag-icon-kr waves-effect waves-light" [ngClass]="{deactivate:kr}" (click)="kr=!kr"></i>
-        <i class="flag-icon flag-icon-kr waves-effect waves-light" [ngClass]="{deactivate:kr}" (click)="kr=!kr"></i>
     </div>
 </div>
 <div class="result-wrapper" [ngClass]="{active:isSearched}">
-    <nav>
+    <!--<nav>
         <img class="brand-logo center" src="logo.png" (click)="reload()">
-        <i class="material-icons center waves-effect waves-light" (click)="reload()">navigate_before</i>
+        <div class="right-align list-button">
+            <button class="btn-floating waves-effect waves-light"><i class="material-icons">view_list</i></button>
+            <button class="btn-floating waves-effect waves-light"><i class="material-icons">large_donut</i></button>
+            <button class="btn-floating waves-effect waves-light"><i class="material-icons">insert_chart</i></button>
+        </div>
+        <i class="material-icons center waves-effect waves-light back" (click)="reload()">navigate_before</i>
+        <ul class="right hide-on-med-and-down">
+            <li><a href=""><i class="material-icons">view_list</i></a></li>
+            <li><a href=""><i class="material-icons">large_donut</i></a></li>
+            <li><a href=""><i class="material-icons">insert_chart</i></a></li>
+        </ul>
+    </nav>-->
+    <nav>
+        <div class="nav-wrapper">
+            <!--<a href="#" class="brand-logo">Logo</a>-->
+            <a class="material-icons center waves-effect waves-light back" (click)="reload()">navigate_before</a>
+            <a class="material-icons center waves-effect waves-light right">equalizer</a>
+            <a class="material-icons center waves-effect waves-light right">donut_large</a>
+            <a class="material-icons center waves-effect waves-light right">reorder</a>
+        </div>
     </nav>
     <ul class="collection">
-        <li class="collection-item avatar">
-            <i class="material-icons circle">folder</i>
-            <span class="title">頁面顯示方式之調整方法、行動電子裝置，與電腦程式產品</span>
-            <p>I366130
-                <br>2012/06/11</p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+        <li class="collection-item">
+            <img class="thumbnail" src="http://api-doc.webpat.co/image/figure?pn=201537479&apn=103110790&dataSource=TWAPPL&zoomLevel=1">
+            <div class="title">頁面顯示方式之調整方法、行動電子裝置，與電腦程式產品</div>
+            <div class="no">I366130</div>
+            <div class="date">2012/06/11</div>
         </li>
         <li class="collection-item avatar">
             <i class="material-icons circle green">insert_chart</i>
             <span class="title">手持電子裝置與其圖形化使用者介面之切換方法</span>
-            <p>I366125
-                <br>2012/06/11</p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+            <p>I366125 2012/06/11</p>
         </li>
         <li class="collection-item avatar">
             <i class="material-icons circle red">play_arrow</i>
             <span class="title">手持式電子裝置</span>
-            <p>I365701
-                <br>2012/06/01</p>
-            <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+            <p>I365701 2012/06/01</p>
         </li>
     </ul>
 </div>

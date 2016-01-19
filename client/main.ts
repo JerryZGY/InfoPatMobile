@@ -30,6 +30,6 @@ export class Main {
         setTimeout(() => {
             this.isSearching = false;
             this.isSearched = true;
-        }, 2000)
+        }, 100)
     }
 }

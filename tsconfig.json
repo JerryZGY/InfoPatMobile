@@ -4,10 +4,6 @@
     "experimentalDecorators": true,
     "module": "system"
   },
-  "meteorCompilerOptions": {
-    "alwaysThrow": false,
-    "useCache": true
-  },
   "files": [
     "typings/tsd.d.ts",
     "client/app.ts",

@@ -2,6 +2,7 @@
 @import "{francocatena:compass}/compass/layout";
 @import "lib/mixins";
 $primary-color: #74B73F;
+$primary-size: 64px;
 $minimum-screen: "(max-width: 389px)";
 $small-screen: "(min-width: 390px) and (max-width: 463px)";
 $medium-screen: "(min-width: 464px) and (max-width: 537px)";
@@ -23,18 +24,51 @@ $maximum-screen: "(min-width: 612px) ";
 }
 .result-wrapper {
     @extend .fadable;
+    min-width: 296px;
     nav {
+        min-height: $primary-size;
+        z-index: 1;
+        position: relative;
         background-color: $primary-color;
-        img, i {
-            height: 64px;
-            cursor: pointer;
-        }
-        i {
-            width: 64px;
-            line-height: 64px;
+        a {
+            font-size: 32px;
+            width: $primary-size;
+            height: $primary-size;
+            @include user-select(none);
+            line-height: $primary-size;
         }
     }
-    .collection { margin: 0; }
+    .collection {
+        margin: 0;
+        border: none;
+        border-radius: 0;
+        li {
+            height: 84px;
+            padding: 10px 10px 10px 84px;
+            .thumbnail {
+                left: 0;
+                margin: auto 9px;
+                position: absolute;
+                width: $primary-size;
+                height: $primary-size;
+                border: 1px solid #999;
+                box-shadow: 2px 2px 5px -2px #555;
+            }
+            .title {
+                height: 24px;
+                font-size: 16px;
+                overflow: hidden;
+                line-height: 24px;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+            .no, .date {
+                height: 20px;
+                font-size: 15px;
+                line-height: 20px;
+            }
+        }
+    }
 }
 .content-wrapper {
     opacity: 1;
@@ -115,6 +149,7 @@ $maximum-screen: "(min-width: 612px) ";
         line-height: 0px;
         @extend .renderable;
         @include display-flex;
+        justify-content: center;
         @include flex-flow(row wrap);
         @include transition(width .2s ease-in-out, height .2s ease-in-out);
         &.active {
@@ -124,11 +159,11 @@ $maximum-screen: "(min-width: 612px) ";
             i { pointer-events: auto; }
         }
         i {
-            width: 64px;
+            width: $primary-size;
             height: 48px;
             margin: 5px;
             pointer-events: none;
-            &.deactivate { opacity: .5; }
+            &.deactivate { opacity: .1; }
             &.flag-icon-eu { background-image: url("eu.svg"); }
         }
     }
