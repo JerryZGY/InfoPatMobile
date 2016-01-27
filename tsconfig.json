@@ -2,17 +2,6 @@
   "compilerOptions": {
     "noResolve": false,
     "experimentalDecorators": true,
-    "module": "system",
-    "watch": true
-  },
-  "files": [
-    "typings/tsd.d.ts",
-    "client/app.ts",
-    "client/main.ts",
-    "client/result.ts",
-    "server/main.ts",
-    "server/lib/esAPI.ts",
-    "lib/dataTypes.ts",
-    "collections/results.ts"
-  ]
+    "module": "system"
+  }
 }
