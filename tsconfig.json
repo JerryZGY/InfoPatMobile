@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "noResolve": false,
     "experimentalDecorators": true,
     "module": "system"
   }

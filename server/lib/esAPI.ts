@@ -26,6 +26,10 @@ export class RemoteServer {
     private options = { "enableAggs": true, "aggs": ["year_agg", "applType_agg", "patentCountry_agg"] };
 
     search(text: string, cb: (data: ParsedData) => void) {
-        this.remoteServer.call("patent_search", text, 10, 0, this.options, (err, res: Response) => cb(new ParsedData(res)))
+        this.remoteServer.call("patent_search", text, 10, 0, this.options, (err, res: Response) => {
+            console.log("")
+            cb(new ParsedData(res))
+            
+        });
     }
 }

@@ -23,7 +23,7 @@
     <div class="analyze" [ngClass]="{active:viewType !== 'legacy'}">
         <svg viewBox="0 0 500 500" preserveAspectRatio="xMinYMin meet"></svg>
         <div class="country row" [ngClass]="{active:viewType === 'country'}">
-            <div *ngFor="#data of results?.aggs?.country; #i = index" class="data col s6 m3 l2">
+            <div *ngFor="#data of result?.aggs?.country; #i = index" class="data col s6 m3 l2">
                 <div class="row">
                     <img class="flag col s6" src="eu.svg">
                     <div class="percent col s6 color-{{i}}">{{data.count / countryTotal | percent:'1.0-1'}}</div>
@@ -32,7 +32,7 @@
             </div>
         </div>
         <div class="year row" [ngClass]="{active:viewType === 'year'}">
-            <div *ngFor="#data of results?.aggs?.year; #i = index" class="data col s6 m3 l2">
+            <div *ngFor="#data of result?.aggs?.year; #i = index" class="data col s6 m3 l2">
                 <div class="row color-{{i}}">
                     <div class="current col s6">{{data.key}}年</div>
                     <div class="percent col s6">{{data.count / yearTotal | percent:'1.0-1'}}</div>
@@ -41,7 +41,7 @@
             </div>
         </div>
         <div class="type row" [ngClass]="{active:viewType === 'type'}">
-            <div *ngFor="#data of results?.aggs?.type; #i = index" class="data col s6 m3 l3">
+            <div *ngFor="#data of result?.aggs?.type; #i = index" class="data col s6 m3 l3">
                 <div class="current col s12 color-{{i}}">{{data.key}}</div>
                 <div class="percent col s12">{{data.count / typeTotal | percent:'1.0-1'}}</div>
                 <div class="count col s12">{{data.count}}筆</div>
@@ -67,5 +67,8 @@
         <i class="flag-icon flag-icon-jp waves-effect waves-light" [ngClass]="{deactivate:jp}" (click)="jp=!jp"></i>
         <i class="flag-icon flag-icon-kr waves-effect waves-light" [ngClass]="{deactivate:kr}" (click)="kr=!kr"></i>
     </div>
+    <!--<li *ngIf="result">
+      <p>{{result.total}}</p>
+    </li>-->
 </div>
 <div class="overlay" [ngClass]="{active:isActive}" (click)="isActive=false"></div>

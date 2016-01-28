@@ -1,6 +1,6 @@
 import {RouterLink} from 'angular2/router';
 import {Results} from 'collections/results';
-import {Component, View, NgZone} from 'angular2/core';
+import {Component, View} from 'angular2/core';
 import {MeteorComponent} from 'angular2-meteor';
 import {IParsedData} from 'lib/dataTypes';
 
@@ -21,39 +21,25 @@ export class Main extends MeteorComponent {
     isSearching = false;
     isSearched = false;
     isLegacy = false;
-    results: IParsedData;
+    results: Mongo.Cursor<IParsedData>;
+    result: IParsedData;
     viewType = "legacy";
     yearTotal: number = 0;
     typeTotal: number = 0;
     countryTotal: number = 0;
 
-
     constructor() {
         super();
         this.subscribe("results", () => {
-            this.results = Results.findOne();
-            this.yearTotal = this.results.aggs.year.reduce((x, y) => x + y.count, 0);
-            this.typeTotal = this.results.aggs.type.reduce((x, y) => x + y.count, 0);
-            this.countryTotal = this.results.aggs.country.reduce((x, y) => x + y.count, 0);
-            console.log("sub");
+            this.results = Results.find();
+            this.autorun(() => {
+                this.result = this.results.fetch()[0];
+                this.yearTotal = this.result.aggs.year.reduce((x, y) => x + y.count, 0);
+                this.typeTotal = this.result.aggs.type.reduce((x, y) => x + y.count, 0);
+                this.countryTotal = this.result.aggs.country.reduce((x, y) => x + y.count, 0);
+            }, true);
         });
     }
-
-    // constructor() {
-    //     super();
-    //     this.subscribe('results', () => {
-    //         this.res = Results.find();
-    //         this.results = this.res.fetch()[0];
-    //         console.log(this.results);
-    //     });
-    //     // this.subscribe('results', () => {
-    //     //     console.log("sub");
-    //     //     this.results = Results.findOne();
-    //     //     this.yearTotal = this.results.aggs.year.reduce((x, y) => x + y.count, 0);
-    //     //     this.typeTotal = this.results.aggs.type.reduce((x, y) => x + y.count, 0);
-    //     //     this.countryTotal = this.results.aggs.country.reduce((x, y) => x + y.count, 0);
-    //     // });
-    // }
 
     reload() {
         this.isSearching = false;
@@ -62,15 +48,17 @@ export class Main extends MeteorComponent {
     }
 
     search(text) {
-        Meteor.call("search", text)
-        $("#search").blur();
-        $("#legacy").click();
-        this.isSearching = true;
-        setTimeout(() => {
-            this.isSearching = false;
-            this.isSearched = true;
-            this.isLegacy = true;
-        }, 100)
+        if (text) {
+            $("#search").blur();
+            this.isSearching = true;
+            Meteor.call("search", text, (err, res) => {
+                // if (err)
+                console.log("Update error:", err, res);
+                this.isSearching = false;
+                this.isSearched = true;
+                this.isLegacy = true;
+            });
+        }
     }
 
     renderChartByViewType() {
@@ -82,7 +70,7 @@ export class Main extends MeteorComponent {
             arc = d3.svg.arc().innerRadius(radius - 100).outerRadius(radius - 20),
             pie = d3.layout.pie().value(function(d) { return d["count"]; }),
             svg = d3.select("svg").append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")"),
-            values = d3.values(this.results.aggs[this.viewType]);
+            values = d3.values(this.result.aggs[this.viewType]);
         svg.append("text")
             .text(this.countryTotal + "筆")
             .attr("class", "label")
