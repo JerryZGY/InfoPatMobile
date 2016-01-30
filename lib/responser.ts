@@ -17,7 +17,7 @@ export interface Hit {
 }
 
 export interface AllAggs {
-    year_agg: Aggs,
+    issuedYear_agg: Aggs,
     applType_agg: Aggs,
     patentCountry_agg: Aggs
 }
@@ -46,4 +46,5 @@ export interface IParsedData {
     hits: Hit[];
     took: number;
     aggs?: ParsedAggs;
+    modifiedAt: Date;
 }
