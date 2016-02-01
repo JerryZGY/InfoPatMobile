@@ -1,6 +1,7 @@
 @import "{francocatena:compass}/compass";
 @import "{francocatena:compass}/compass/layout";
 @import "lib/mixins";
+@import "lib/colorsheet";
 $primary-color: #74B73F;
 $primary-size: 64px;
 $minimum-screen: "(max-width: 389px)";
@@ -18,30 +19,49 @@ $maximum-screen: "(min-width: 612px) ";
     }
 }
 .renderable {
-    @include transition(background-color .3s ease-in-out);
     background-color: $primary-color;
+    @include transition(background-color .3s ease-in-out);
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .16), 0 2px 10px 0 rgba(0, 0, 0, .12);
 }
 .result-wrapper {
     @extend .fadable;
     min-width: 296px;
     nav {
-        min-height: $primary-size;
         z-index: 1;
         position: relative;
+        min-height: $primary-size;
+        line-height: $primary-size;
         background-color: $primary-color;
         a {
-            font-size: 32px;
             width: $primary-size;
             height: $primary-size;
             @include user-select(none);
             line-height: $primary-size;
         }
+        [type="radio"] + label {
+            padding: 0;
+            width: 58px;
+            color: white;
+            font-size: 32px;
+            margin: 19.5px 0;
+            vertical-align: middle;
+            &:before, &:after { display: none }
+        }
+        [type="radio"]:not(:checked) + label { opacity: .5 }
     }
-    .collection {
+    svg {
+        margin: auto;
+        max-width: 500px;
+        max-height: 500px;
+        display: block;
+    }
+    .legacy.collection {
         margin: 0;
+        width: 100%;
         border: none;
         border-radius: 0;
+        @extend .fadable;
+        position: absolute;
         li {
             height: 84px;
             padding: 10px 10px 10px 84px;
@@ -69,10 +89,40 @@ $maximum-screen: "(min-width: 612px) ";
             }
         }
     }
+    .analyze {
+        @extend .fadable;
+        .country, .year, .type {
+            margin: 0;
+            width: 100%;
+            min-width: 296px;
+            @extend .fadable;
+            position: absolute;
+            text-align: center;
+            background-color: #74B73F;
+            .col {
+                padding: 0;
+                .row {
+                    margin: 0;
+                }
+                .flag { width: $primary-size }
+                // .percent {
+                //     line-height: 48px;
+                //     width: calc(100% - 64px);
+                // }
+            }
+        }
+        .year > .col {
+            color: #12202D;
+            border: 2px solid #74B73F;
+            .col { line-height: 30px }
+            .count { font-size: 20px }
+            .percent { font-size: 16px }
+            .current { font-size: 18px }
+        }
+    }
 }
 .content-wrapper {
     opacity: 1;
-    height: 298px;
     margin: 25px auto 0;
     @include user-select(none);
     @include transition(opacity .3s ease-in-out, top .3s ease-in-out, width .2s ease-in-out, height .2s ease-in-out);
@@ -123,9 +173,9 @@ $maximum-screen: "(min-width: 612px) ";
             width: 48px;
             color: white;
             cursor: default;
+            font-size: 34px;
             line-height: 48px;
             position: absolute;
-            font-size: 34px;
             &.settings-button,  {
                 right: 0;
                 left: unset;
@@ -140,7 +190,7 @@ $maximum-screen: "(min-width: 612px) ";
             @extend .fadable;
             visibility: hidden;
             background-color: white;
-            .indeterminate { background-color: $primary-color; }
+            .indeterminate { background-color: $primary-color }
         }
     }
     .flag-wrapper {
@@ -156,36 +206,27 @@ $maximum-screen: "(min-width: 612px) ";
             z-index: 999;
             position: fixed;
             background-color: wheat;
-            i { pointer-events: auto; }
+            i { pointer-events: auto }
         }
         i {
             width: $primary-size;
             height: 48px;
             margin: 5px;
             pointer-events: none;
-            &.deactivate { opacity: .1; }
-            &.flag-icon-eu { background-image: url("eu.svg"); }
+            &.deactivate { opacity: .1 }
+            &.flag-icon-eu { background-image: url("eu.svg") }
         }
     }
 }
 .content-wrapper, .content-wrapper .flag-wrapper {
     @media #{$minimum-screen} {
         width: 296px;
-        max-height: 258px;
-        .logo { height: 160px; }
+        .logo { height: 160px }
     }
-    @media #{$small-screen} {
-        width: 370px;
-    }
-    @media #{$medium-screen} {
-        width: 444px;
-    }
-    @media #{$large-screen} {
-        width: 518px;
-    }
-    @media #{$maximum-screen} {
-        width: 592px;
-    }
+    @media #{$small-screen} { width: 370px }
+    @media #{$medium-screen} { width: 444px }
+    @media #{$large-screen} { width: 518px }
+    @media #{$maximum-screen} { width: 592px }
 }
 .overlay {
     top: 0px;

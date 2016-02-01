@@ -13,14 +13,11 @@ tracker                 # Meteor's client-side reactive programming library
 
 standard-minifiers      # JS/CSS minifiers run for production mode
 
-autopublish             # Publish all data to the clients (for prototyping)
-insecure                # Allow all DB writes from clients (for prototyping)
 urigo:angular2-meteor
 fourseven:scss
 materialize:materialize
 francocatena:compass
 jss:flag-icon
+d3js:d3
 meteorhacks:npm
-
-
 npm-container
