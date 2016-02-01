@@ -5,9 +5,9 @@ import {Logger} from 'lib/logger';
 Meteor.publish('results', () => Results.find());
 
 Meteor.methods({
-    search(text: string) {
+    search(text: string, country: string[]) {
         new Logger().debug(`>>> Search called at ${this.connection.clientAddress}, changedSize: ${
-            Results.update(Results.findOne || {}, { $set: new RemoteServer().search(text) })
+            Results.update(Results.findOne || {}, { $set: new RemoteServer().search(text, country) })
         }`);
     }
 });

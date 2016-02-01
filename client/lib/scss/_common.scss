@@ -10,11 +10,15 @@ $medium-screen: "(min-width: 464px) and (max-width: 537px)";
 $large-screen: "(min-width: 538px) and (max-width: 611px)";
 $maximum-screen: "(min-width: 612px) ";
 .fadable {
+    height: 0;
     opacity: 0;
+    overflow: hidden;
     visibility: hidden;
     @include transition(opacity .3s ease-in-out, visibility .3s ease-in-out);
     &.active {
         opacity: 1;
+        height: auto;
+        overflow: visible;
         visibility: visible;
     }
 }

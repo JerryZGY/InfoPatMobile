@@ -3,4 +3,5 @@
 /// <reference path="infopatmobile.d.ts" />
 /// <reference path="node/node.d.ts" />
 /// <reference path="winston/winston.d.ts" />
+/// <reference path="jquery/jquery.d.ts" />
 undefined

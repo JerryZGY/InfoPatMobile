@@ -5,7 +5,7 @@
     min-width: 296px;
     nav {
         z-index: 1;
-        position: relative;
+        position: fixed;
         min-height: $primary-size;
         line-height: $primary-size;
         background-color: $primary-color;
@@ -25,36 +25,6 @@
             &:before, &:after { display: none }
         }
         [type="radio"]:not(:checked) + label { opacity: .5 }
-    }
-    .analyze {
-        @extend .fadable;
-        .label {
-            font-size: 35px;
-            text-anchor: middle;
-        }
-        .country, .year, .type {
-            margin: 0;
-            width: 100%;
-            min-width: 296px;
-            @extend .fadable;
-            position: absolute;
-            text-align: center;
-            background-color: #88CB53;
-            .data {
-                padding: 0;
-                color: #12202D;
-                border: 2px solid #74B73F;
-                .row { margin: 0 }
-                .count { font-size: 20px }
-                .percent { font-size: 18px }
-                .current { font-size: 18px }
-                .col { line-height: 48px; padding: 0; }
-            }
-        }
-        .country > .col {
-            .flag { width: $primary-size }
-            .percent { width: calc(100% - 64px) }
-        }
     }
 }
 .content-wrapper {
@@ -173,4 +143,10 @@
     position: fixed;
     @extend .fadable;
     background-color: rgba(0, 0, 0, .5);
+    &.active { height: 100% }
+}
+analyze {
+    top: 64px;
+    @extend .fadable;
+    position: absolute;
 }

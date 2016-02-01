@@ -12,6 +12,11 @@ import {DynamicCounter} from 'client/lib/ts/dynamicCounter';
 export class Analyze extends MeteorComponent implements OnChanges {
     @Input() viewTypeProperty: string;
     viewType: string;
+    viewTypeString = {
+        "year": "核准年度分析",
+        "type": "專利類型分析",
+        "country": "專利國別分析"
+    };
     result: IParsedData;
     results: Mongo.Cursor<IParsedData>;
     total: { [key: string]: number };
@@ -65,13 +70,15 @@ export class Analyze extends MeteorComponent implements OnChanges {
     }
 
     renderDynamicCounterOnSVG(svg: d3.Selection<any>) {
-        svg.append('foreignObject')
-            .attr({
-                'x': -125,
-                'y': -25,
-                'width': 250,
-                'height': 50
-            }).append('xhtml:div').attr("class", "counter-wrapper").append('xhtml:div').attr("id", "counter");
+        let infoWrapper = svg.append("foreignObject")
+        .attr({
+            "x": -125,
+            "y": -50,
+            "width": 250,
+            "height": 100
+        }).append("xhtml:div").attr("class", "info-wrapper");
+        infoWrapper.append("xhtml:div").attr("class", "info").text(this.viewTypeString[this.viewType]);
+        infoWrapper.append('xhtml:div').attr("id", "counter");
         new DynamicCounter("counter", this.total[this.viewType]);
     }
 }
