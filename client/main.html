@@ -8,7 +8,7 @@
             <label for="type" class="material-icons center right">merge_type</label>
             <input name="viewType" type="radio" id="year" (click)="viewType='year'" (click)="renderChartByViewType()" />
             <label for="year" class="material-icons center right">date_range</label>
-            <input name="viewType" type="radio" id="legacy" checked (click)="viewType='legacy'" (click)="renderChartByViewType()" />
+            <input name="viewType" type="radio" id="legacy" checked (click)="viewType='legacy'"/>
             <label for="legacy" class="material-icons center right">reorder</label>
         </div>
     </nav>
@@ -23,35 +23,28 @@
     <div class="analyze" [ngClass]="{active:viewType !== 'legacy'}">
         <svg viewBox="0 0 500 500" preserveAspectRatio="xMinYMin meet"></svg>
         <div class="country row" [ngClass]="{active:viewType === 'country'}">
-            <div class="col s4">
+            <div *ngFor="#data of results?.aggs?.country; #i = index" class="data col s6 m3 l2">
                 <div class="row">
                     <img class="flag col s6" src="eu.svg">
-                    <div class="percent col s6">60%</div>
+                    <div class="percent col s6 color-{{i}}">{{data.count / countryTotal | percent:'1.0-1'}}</div>
                 </div>
-                <div class="count col s12">筆</div>
-            </div>
-            <div class="col s4">
-                <div class="row">
-                    <img class="flag col s6" src="eu.svg">
-                    <div class="percent col s6">60%</div>
-                </div>
-                <div class="count col s12">3493筆</div>
-            </div>
-            <div class="col s4">
-                <div class="row">
-                    <img class="flag col s6" src="eu.svg">
-                    <div class="percent col s6">60%</div>
-                </div>
-                <div class="count col s12">3493筆</div>
+                <div class="count col s12">{{data.count}}筆</div>
             </div>
         </div>
         <div class="year row" [ngClass]="{active:viewType === 'year'}">
-            <div *ngFor="#yearData of results?.aggs?.year; #i = index" class="data col s6 m4 l4 color-{{i}}">
-                <div class="row">
-                    <div class="current col s6">{{yearData.year}}年</div>
-                    <div class="percent col s6">{{yearData.count / yearTotal | percent:'1.0-0'}}</div>
+            <div *ngFor="#data of results?.aggs?.year; #i = index" class="data col s6 m3 l2">
+                <div class="row color-{{i}}">
+                    <div class="current col s6">{{data.key}}年</div>
+                    <div class="percent col s6">{{data.count / yearTotal | percent:'1.0-1'}}</div>
                 </div>
-                <div class="count col s12">{{yearData.count}}筆</div>
+                <div class="count col s12">{{data.count}}筆</div>
+            </div>
+        </div>
+        <div class="type row" [ngClass]="{active:viewType === 'type'}">
+            <div *ngFor="#data of results?.aggs?.type; #i = index" class="data col s6 m3 l3">
+                <div class="current col s12 color-{{i}}">{{data.key}}</div>
+                <div class="percent col s12">{{data.count / typeTotal | percent:'1.0-1'}}</div>
+                <div class="count col s12">{{data.count}}筆</div>
             </div>
         </div>
     </div>

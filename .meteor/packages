@@ -19,5 +19,5 @@ materialize:materialize
 francocatena:compass
 jss:flag-icon
 d3js:d3
-meteorhacks:npm
-npm-container
+autopublish
+insecure

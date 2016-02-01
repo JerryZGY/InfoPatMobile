@@ -1,7 +1,8 @@
 import {RouterLink} from 'angular2/router';
 import {Results} from 'collections/results';
-import {Component, View} from 'angular2/core';
+import {Component, View, NgZone} from 'angular2/core';
 import {MeteorComponent} from 'angular2-meteor';
+import {IParsedData} from 'lib/dataTypes';
 
 @Component({ selector: 'main' })
 
@@ -20,28 +21,50 @@ export class Main extends MeteorComponent {
     isSearching = false;
     isSearched = false;
     isLegacy = false;
-    results;
+    results: IParsedData;
     viewType = "legacy";
-    yearTotal;
+    yearTotal: number = 0;
+    typeTotal: number = 0;
+    countryTotal: number = 0;
+
 
     constructor() {
         super();
-        this.subscribe('results', () => {
+        this.subscribe("results", () => {
             this.results = Results.findOne();
-            this.yearTotal = Results.findOne()["aggs"]["year"].reduce((memo, year) => memo + year.count, 0);
-        }, true);
+            this.yearTotal = this.results.aggs.year.reduce((x, y) => x + y.count, 0);
+            this.typeTotal = this.results.aggs.type.reduce((x, y) => x + y.count, 0);
+            this.countryTotal = this.results.aggs.country.reduce((x, y) => x + y.count, 0);
+            console.log("sub");
+        });
     }
+
+    // constructor() {
+    //     super();
+    //     this.subscribe('results', () => {
+    //         this.res = Results.find();
+    //         this.results = this.res.fetch()[0];
+    //         console.log(this.results);
+    //     });
+    //     // this.subscribe('results', () => {
+    //     //     console.log("sub");
+    //     //     this.results = Results.findOne();
+    //     //     this.yearTotal = this.results.aggs.year.reduce((x, y) => x + y.count, 0);
+    //     //     this.typeTotal = this.results.aggs.type.reduce((x, y) => x + y.count, 0);
+    //     //     this.countryTotal = this.results.aggs.country.reduce((x, y) => x + y.count, 0);
+    //     // });
+    // }
 
     reload() {
         this.isSearching = false;
         this.isSearched = false;
-        this.viewType = "legacy"
         $("#search").focus();
     }
 
     search(text) {
-        // Meteor.call("search", text);
+        Meteor.call("search", text)
         $("#search").blur();
+        $("#legacy").click();
         this.isSearching = true;
         setTimeout(() => {
             this.isSearching = false;
@@ -55,11 +78,15 @@ export class Main extends MeteorComponent {
         var width = 500,
             height = 500,
             radius = Math.min(width, height) / 2,
-            color = d3.scale.category20(),
+            color = d3.scale.category20c(),
             arc = d3.svg.arc().innerRadius(radius - 100).outerRadius(radius - 20),
             pie = d3.layout.pie().value(function(d) { return d["count"]; }),
             svg = d3.select("svg").append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")"),
             values = d3.values(this.results.aggs[this.viewType]);
+        svg.append("text")
+            .text(this.countryTotal + "筆")
+            .attr("class", "label")
+            .attr("dy", "15");
         svg.datum(values.map(function(d) { return { "count": 0 }; })).selectAll("path")
             .data(pie)
             .enter().append("path")

@@ -1,5 +1,5 @@
 import {bootstrap} from 'angular2-meteor';
-import {Component, View, NgZone, provide} from 'angular2/core';
+import {Component, View, provide} from 'angular2/core';
 import {ROUTER_PROVIDERS, ROUTER_DIRECTIVES, RouteConfig, APP_BASE_HREF} from 'angular2/router';
 import {Main} from 'client/main';
 

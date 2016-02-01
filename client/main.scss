@@ -1,7 +1,7 @@
 @import "{francocatena:compass}/compass";
 @import "{francocatena:compass}/compass/layout";
-@import "lib/mixins";
-@import "lib/colorsheet";
+@import "lib/scss/mixins";
+@import "lib/scss/colorsheet";
 $primary-color: #74B73F;
 $primary-size: 64px;
 $minimum-screen: "(max-width: 389px)";
@@ -91,6 +91,10 @@ $maximum-screen: "(min-width: 612px) ";
     }
     .analyze {
         @extend .fadable;
+        .label {
+            font-size: 35px;
+            text-anchor: middle;
+        }
         .country, .year, .type {
             margin: 0;
             width: 100%;
@@ -98,26 +102,21 @@ $maximum-screen: "(min-width: 612px) ";
             @extend .fadable;
             position: absolute;
             text-align: center;
-            background-color: #74B73F;
-            .col {
+            background-color: #88CB53;
+            .data {
                 padding: 0;
-                .row {
-                    margin: 0;
-                }
-                .flag { width: $primary-size }
-                // .percent {
-                //     line-height: 48px;
-                //     width: calc(100% - 64px);
-                // }
+                color: #12202D;
+                border: 2px solid #74B73F;
+                .row { margin: 0 }
+                .count { font-size: 20px }
+                .percent { font-size: 18px }
+                .current { font-size: 18px }
+                .col { line-height: 48px; padding: 0; }
             }
         }
-        .year > .col {
-            color: #12202D;
-            border: 2px solid #74B73F;
-            .col { line-height: 30px }
-            .count { font-size: 20px }
-            .percent { font-size: 16px }
-            .current { font-size: 18px }
+        .country > .col {
+            .flag { width: $primary-size }
+            .percent { width: calc(100% - 64px) }
         }
     }
 }
@@ -125,10 +124,10 @@ $maximum-screen: "(min-width: 612px) ";
     opacity: 1;
     margin: 25px auto 0;
     @include user-select(none);
-    @include transition(opacity .3s ease-in-out, top .3s ease-in-out, width .2s ease-in-out, height .2s ease-in-out);
+    @include transition(opacity .3s ease-in-out, width .2s ease-in-out, height .2s ease-in-out);
     &.active {
         opacity: 0;
-        top: -135%;
+        z-index: -1;
     }
     @include stretch(0, 0, 0, 0);
     &.focus .search-wrapper {
