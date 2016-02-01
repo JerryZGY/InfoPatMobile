@@ -1,0 +1,88 @@
+@import "lib/scss/common";
+svg {
+    margin: auto;
+    max-width: 500px;
+    max-height: 500px;
+    display: block;
+}
+.legacy.collection {
+    margin: 0;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    @extend .fadable;
+    position: absolute;
+    li {
+        height: 84px;
+        padding: 10px 10px 10px 84px;
+        .thumbnail {
+            left: 0;
+            margin: auto 9px;
+            position: absolute;
+            width: $primary-size;
+            height: $primary-size;
+            border: 1px solid #999;
+            box-shadow: 2px 2px 5px -2px #555;
+        }
+        .title {
+            height: 24px;
+            font-size: 16px;
+            overflow: hidden;
+            line-height: 24px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        .no, .date {
+            height: 20px;
+            font-size: 15px;
+            line-height: 20px;
+        }
+    }
+}
+.analyze {
+    @extend .fadable;
+    .label {
+        font-size: 35px;
+        text-anchor: middle;
+    }
+    .country, .year, .type {
+        margin: 0;
+        width: 100%;
+        min-width: 296px;
+        @extend .fadable;
+        position: absolute;
+        text-align: center;
+        background-color: #88CB53;
+        .data {
+            padding: 0;
+            color: #12202D;
+            border: 2px solid #74B73F;
+            .row { margin: 0 }
+            .count { font-size: 20px }
+            .percent { font-size: 18px }
+            .current { font-size: 18px }
+            .col { line-height: 48px; padding: 0 }
+        }
+    }
+    .country > .col {
+        .flag { width: $primary-size }
+        .percent { width: calc(100% - 64px) }
+    }
+}
+.counter-wrapper {
+    width: 250px;
+    height: 50px;
+    @include display-flex;
+    justify-content: center;
+    .odometeor {
+        height: 50px;
+        color: #000 !important;
+        padding: 0 5px !important;
+        font-size: 35px !important;
+        line-height: 50px !important;
+        background-color: transparent !important;
+        .odometer-digit {
+            color: #000 !important;
+        }
+    }
+}

@@ -10,6 +10,12 @@
     },
     "d3/d3.d.ts": {
       "commit": "2e7a477ac2b6471055aa6e0e56b333e8f327d6b7"
+    },
+    "node/node.d.ts": {
+      "commit": "86dbea8fc37d9473fee465da4f0a21bea4f8cbd9"
+    },
+    "winston/winston.d.ts": {
+      "commit": "86dbea8fc37d9473fee465da4f0a21bea4f8cbd9"
     }
   }
 }

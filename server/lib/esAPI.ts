@@ -1,19 +1,22 @@
-import {Response, Aggs, Hit, ParsedAggs, ParsedContent, IParsedData} from 'lib/dataTypes';
+import {Response, Aggs, Hit, ParsedAggs, ParsedContent, IParsedData} from 'lib/responser';
 
 class ParsedData implements IParsedData {
     total: number;
     hits: Hit[];
     took: number;
     aggs: ParsedAggs;
+    modifiedAt: Date;
    
     constructor(res: Response) {
         this.total = res.total;
         this.hits = res.hits;
+        this.took = res.took;
         this.aggs = <ParsedAggs>{
-            year: this.parse(res.aggs.year_agg),
+            year: this.parse(res.aggs.issuedYear_agg),
             type: this.parse(res.aggs.applType_agg),
             country: this.parse(res.aggs.patentCountry_agg)
         };
+        this.modifiedAt = new Date();
     }
     
     private parse(aggs: Aggs): ParsedContent[] {
@@ -22,10 +25,7 @@ class ParsedData implements IParsedData {
 }
 
 export class RemoteServer {
-    private remoteServer = DDP.connect('http://upat.webpat.co/');
-    private options = { "enableAggs": true, "aggs": ["year_agg", "applType_agg", "patentCountry_agg"] };
-
-    search(text: string, cb: (data: ParsedData) => void) {
-        this.remoteServer.call("patent_search", text, 10, 0, this.options, (err, res: Response) => cb(new ParsedData(res)))
-    }
+    private remoteServer: any = DDP.connect('http://upat.webpat.co/');
+    private options = { "enableAggs": true, "aggs": ["issuedYear_agg", "applType_agg", "patentCountry_agg"] };
+    search(text: string): ParsedData { return new ParsedData(this.remoteServer.call("patent_search", text, 10, 0, this.options)); }
 }

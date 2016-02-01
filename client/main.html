@@ -2,52 +2,17 @@
     <nav>
         <div class="nav-wrapper">
             <a class="material-icons center waves-effect waves-light back" (click)="reload()">navigate_before</a>
-            <input name="viewType" type="radio" id="country" (click)="viewType='country'" (click)="renderChartByViewType()" />
+            <input name="viewType" type="radio" id="country" value="country" [(ngModel)]="viewType"/>
             <label for="country" class="material-icons center right">flag</label>
-            <input name="viewType" type="radio" id="type" (click)="viewType='type'" (click)="renderChartByViewType()" />
+            <input name="viewType" type="radio" id="type" value="type" [(ngModel)]="viewType"/>
             <label for="type" class="material-icons center right">merge_type</label>
-            <input name="viewType" type="radio" id="year" (click)="viewType='year'" (click)="renderChartByViewType()" />
+            <input name="viewType" type="radio" id="year" value="year" [(ngModel)]="viewType"/>
             <label for="year" class="material-icons center right">date_range</label>
-            <input name="viewType" type="radio" id="legacy" checked (click)="viewType='legacy'"/>
+            <input name="viewType" type="radio" id="legacy" value="legacy" [(ngModel)]="viewType" checked/>
             <label for="legacy" class="material-icons center right">reorder</label>
         </div>
     </nav>
-    <ul class="legacy collection" [ngClass]="{active:viewType === 'legacy'}">
-        <li class="collection-item" *ngFor="#test of [1,2,3,4,5,6,7,8,9]">
-            <img class="thumbnail" src="http://api-doc.webpat.co/image/figure?pn=201537479&apn=103110790&dataSource=TWAPPL&zoomLevel=1">
-            <div class="title">頁面顯示方式之調整方法、行動電子裝置，與電腦程式產品</div>
-            <div class="no">I366130</div>
-            <div class="date">2012/06/11</div>
-        </li>
-    </ul>
-    <div class="analyze" [ngClass]="{active:viewType !== 'legacy'}">
-        <svg viewBox="0 0 500 500" preserveAspectRatio="xMinYMin meet"></svg>
-        <div class="country row" [ngClass]="{active:viewType === 'country'}">
-            <div *ngFor="#data of results?.aggs?.country; #i = index" class="data col s6 m3 l2">
-                <div class="row">
-                    <img class="flag col s6" src="eu.svg">
-                    <div class="percent col s6 color-{{i}}">{{data.count / countryTotal | percent:'1.0-1'}}</div>
-                </div>
-                <div class="count col s12">{{data.count}}筆</div>
-            </div>
-        </div>
-        <div class="year row" [ngClass]="{active:viewType === 'year'}">
-            <div *ngFor="#data of results?.aggs?.year; #i = index" class="data col s6 m3 l2">
-                <div class="row color-{{i}}">
-                    <div class="current col s6">{{data.key}}年</div>
-                    <div class="percent col s6">{{data.count / yearTotal | percent:'1.0-1'}}</div>
-                </div>
-                <div class="count col s12">{{data.count}}筆</div>
-            </div>
-        </div>
-        <div class="type row" [ngClass]="{active:viewType === 'type'}">
-            <div *ngFor="#data of results?.aggs?.type; #i = index" class="data col s6 m3 l3">
-                <div class="current col s12 color-{{i}}">{{data.key}}</div>
-                <div class="percent col s12">{{data.count / typeTotal | percent:'1.0-1'}}</div>
-                <div class="count col s12">{{data.count}}筆</div>
-            </div>
-        </div>
-    </div>
+    <analyze [viewTypeProperty]="viewType"></analyze>
 </div>
 <div class="content-wrapper center" [ngClass]="{active:isSearched, focus:isFocus, searching:isSearching}">
     <div class="logo"></div>
