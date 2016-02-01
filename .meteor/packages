@@ -10,9 +10,7 @@ mongo                   # The database Meteor supports right now
 session                 # Client-side reactive dictionary for your app
 jquery                  # Helpful client-side library
 tracker                 # Meteor's client-side reactive programming library
-
 standard-minifiers      # JS/CSS minifiers run for production mode
-
 urigo:angular2-meteor
 fourseven:scss
 materialize:materialize
@@ -20,7 +18,4 @@ francocatena:compass
 jss:flag-icon
 d3js:d3
 meteorhacks:npm
-
-
-npm-container
 d4nyll:odometeor

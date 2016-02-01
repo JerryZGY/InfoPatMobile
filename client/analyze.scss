@@ -1,10 +1,4 @@
 @import "lib/scss/common";
-svg {
-    margin: auto;
-    max-width: 500px;
-    max-height: 500px;
-    display: block;
-}
 .legacy.collection {
     margin: 0;
     width: 100%;
@@ -41,10 +35,34 @@ svg {
 }
 .analyze {
     @extend .fadable;
-    .label {
-        font-size: 35px;
-        text-anchor: middle;
+    svg {
+        margin: auto;
+        max-width: 500px;
+        max-height: 500px;
+        display: block;
+        .label {
+            font-size: 35px;
+            text-anchor: middle;
+        }
+        .info-wrapper {
+            text-align: center;
+            @include display-flex;
+            justify-content: center;
+            @include flex-flow(row wrap);
+            .info, .odometeor {
+                width: 250px;
+                height: 50px;
+                padding: 0 !important;
+                color: #000 !important;
+                font-size: 35px !important;
+                font-weight: 400 !important;
+                line-height: 50px !important;
+                background-color: transparent !important;
+            }
+            .odometer-digit { color: #000 !important }
+        }
     }
+    .type > .data > .row > .count { font-size: 16px }
     .country, .year, .type {
         margin: 0;
         width: 100%;
@@ -65,24 +83,24 @@ svg {
         }
     }
     .country > .col {
-        .flag { width: $primary-size }
-        .percent { width: calc(100% - 64px) }
-    }
-}
-.counter-wrapper {
-    width: 250px;
-    height: 50px;
-    @include display-flex;
-    justify-content: center;
-    .odometeor {
-        height: 50px;
-        color: #000 !important;
-        padding: 0 5px !important;
-        font-size: 35px !important;
-        line-height: 50px !important;
-        background-color: transparent !important;
-        .odometer-digit {
-            color: #000 !important;
+        .flag, .content {
+            height: 48px;
+            font-size: 20px;
+            line-height: 48px;
+            width: $primary-size;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+         }
+        .flag {
+            z-index: 2;
+            position: relative;
         }
+        .content {
+            z-index: 1;
+            position: absolute
+        }
+        .percent { width: calc(100% - 64px) }
+        .flag-icon-eu { background-image: url(eu.svg) }
     }
 }

@@ -26,6 +26,8 @@ class ParsedData implements IParsedData {
 
 export class RemoteServer {
     private remoteServer: any = DDP.connect('http://upat.webpat.co/');
-    private options = { "enableAggs": true, "aggs": ["issuedYear_agg", "applType_agg", "patentCountry_agg"] };
-    search(text: string): ParsedData { return new ParsedData(this.remoteServer.call("patent_search", text, 10, 0, this.options)); }
+    search(text: string, country: string[]): ParsedData {
+        let options = { "country": country, "enableAggs": true, "aggs": ["issuedYear_agg", "applType_agg", "patentCountry_agg"] };
+        return new ParsedData(this.remoteServer.call("patent_search", text, 10, 0, options));
+    }
 }

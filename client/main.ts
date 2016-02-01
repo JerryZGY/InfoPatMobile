@@ -13,11 +13,11 @@ import {Analyze} from "client/analyze"
 
 export class Main {
     tw = false;
-    us = false;
-    eu = false;
-    cn = false;
-    jp = false;
-    kr = false;
+    cn = true;
+    us = true;
+    // eu = false;
+    // jp = false;
+    // kr = false;
     isSearching = false;
     isSearched = false;
     isLegacy = false;
@@ -26,6 +26,7 @@ export class Main {
     reload() {
         this.isSearching = false;
         this.isSearched = false;
+        $("#legacy").click();
         $("#search").focus();
     }
 
@@ -33,11 +34,19 @@ export class Main {
         if (text) {
             $("#search").blur();
             this.isSearching = true;
-            Meteor.call("search", text, (err, res) => {
+            Meteor.call("search", text, this.countryCheck(), (err, res) => {
                 this.isSearching = false;
                 this.isSearched = true;
                 this.isLegacy = true;
             });
         }
+    }
+    
+    countryCheck(): string[] {
+        var countries: string[] = [];
+        if (!this.tw) countries.push("TW");
+        if (!this.cn) countries.push("CN");
+        if (!this.us) countries.push("US");
+        return countries
     }
 }

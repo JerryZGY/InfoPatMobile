@@ -12,7 +12,7 @@
             <label for="legacy" class="material-icons center right">reorder</label>
         </div>
     </nav>
-    <analyze [viewTypeProperty]="viewType"></analyze>
+    <analyze [ngClass]="{active:isSearched}" [viewTypeProperty]="viewType"></analyze>
 </div>
 <div class="content-wrapper center" [ngClass]="{active:isSearched, focus:isFocus, searching:isSearching}">
     <div class="logo"></div>
@@ -26,11 +26,11 @@
     </form>
     <div class="flag-wrapper" [ngClass]="{active:isActive}">
         <i class="flag-icon flag-icon-tw waves-effect waves-light" [ngClass]="{deactivate:tw}" (click)="tw=!tw"></i>
-        <i class="flag-icon flag-icon-us waves-effect waves-light" [ngClass]="{deactivate:us}" (click)="us=!us"></i>
-        <i class="flag-icon flag-icon-eu waves-effect waves-light" [ngClass]="{deactivate:eu}" (click)="eu=!eu"></i>
         <i class="flag-icon flag-icon-cn waves-effect waves-light" [ngClass]="{deactivate:cn}" (click)="cn=!cn"></i>
-        <i class="flag-icon flag-icon-jp waves-effect waves-light" [ngClass]="{deactivate:jp}" (click)="jp=!jp"></i>
-        <i class="flag-icon flag-icon-kr waves-effect waves-light" [ngClass]="{deactivate:kr}" (click)="kr=!kr"></i>
+        <i class="flag-icon flag-icon-us waves-effect waves-light" [ngClass]="{deactivate:us}" (click)="us=!us"></i>
+        <!--<i class="flag-icon flag-icon-eu waves-effect waves-light" [ngClass]="{deactivate:eu}" (click)="eu=!eu"></i>-->
+        <!--<i class="flag-icon flag-icon-jp waves-effect waves-light" [ngClass]="{deactivate:jp}" (click)="jp=!jp"></i>-->
+        <!--<i class="flag-icon flag-icon-kr waves-effect waves-light" [ngClass]="{deactivate:kr}" (click)="kr=!kr"></i>-->
     </div>
 </div>
 <div class="overlay" [ngClass]="{active:isActive}" (click)="isActive=false"></div>

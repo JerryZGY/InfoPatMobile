@@ -1,5 +1,6 @@
 <ul class="legacy collection" [ngClass]="{active:viewType === 'legacy'}">
     <li class="collection-item" *ngFor="#data of result?.hits">
+        <img class="thumbnail" src="preload.png">
         <img class="thumbnail" src="{{data.imageUrl}}">
         <div class="title">{{data.title}}</div>
         <div class="no">{{data.pubnoRaw}}</div>
@@ -12,7 +13,7 @@
         <div *ngFor="#data of result?.aggs?.year; #i = index" class="data col s6 m3 l2">
             <div class="row color-{{i}}">
                 <div class="current col s6">{{data.key}}年</div>
-                <div class="percent col s6">{{data.count / total.year | percent:'1.0-1'}}</div>
+                <div class="percent col s6">{{data.count / total.year | percent:'1.0-3'}}</div>
             </div>
             <div class="count col s12">{{data.count}}筆</div>
         </div>
@@ -21,7 +22,7 @@
         <div *ngFor="#data of result?.aggs?.type; #i = index" class="data col s6 m3 l3">
             <div class="current col s12 color-{{i}}">{{data.key}}</div>
             <div class="row">
-                <div class="percent col s6">{{data.count / total.type | percent:'1.0-1'}}</div>
+                <div class="percent col s6">{{data.count / total.type | percent:'1.0-3'}}</div>
                 <div class="count col s6">{{data.count}}筆</div>
             </div>
         </div>
@@ -29,8 +30,9 @@
     <div class="country row" [ngClass]="{active:viewType === 'country'}">
         <div *ngFor="#data of result?.aggs?.country; #i = index" class="data col s6 m3 l2">
             <div class="row">
-                <img class="flag col s6" src="eu.svg">
-                <div class="percent col s6 color-{{i}}">{{data.count / total.country | percent:'1.0-1'}}</div>
+                <div class="content">{{data.key | uppercase}}</div>
+                <img class="flag col s6 flag-icon-{{data.key | lowercase}}">
+                <div class="percent col s6 color-{{i}}">{{data.count / total.country | percent:'1.0-3'}}</div>
             </div>
             <div class="count col s12">{{data.count}}筆</div>
         </div>
