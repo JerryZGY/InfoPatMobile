@@ -15,7 +15,6 @@
                 <div class="current col s6">{{data.key}}年</div>
                 <div class="percent col s6">{{data.count / total.year | percent:'1.0-3'}}</div>
             </div>
-            <div class="count col s12">{{data.count}}筆</div>
         </div>
     </div>
     <div class="type row" [ngClass]="{active:viewType === 'type'}">
@@ -23,7 +22,6 @@
             <div class="current col s12 color-{{i}}">{{data.key}}</div>
             <div class="row">
                 <div class="percent col s6">{{data.count / total.type | percent:'1.0-3'}}</div>
-                <div class="count col s6">{{data.count}}筆</div>
             </div>
         </div>
     </div>
@@ -34,7 +32,6 @@
                 <img class="flag col s6 flag-icon-{{data.key | lowercase}}">
                 <div class="percent col s6 color-{{i}}">{{data.count / total.country | percent:'1.0-3'}}</div>
             </div>
-            <div class="count col s12">{{data.count}}筆</div>
         </div>
     </div>
 </div>

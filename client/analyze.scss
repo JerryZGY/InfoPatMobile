@@ -58,8 +58,13 @@
                 font-weight: 400 !important;
                 line-height: 50px !important;
                 background-color: transparent !important;
+                &.info-year:before { content: "核准年度分析" }
+                &.info-type:before { content: "專利類型分析" }
+                &.info-country:before { content: "專利國別分析" }
             }
             .odometer-digit { color: #000 !important }
+            .odometer-inside { position: fixed; width: 250px; }
+            .odometer-digit-inner {  overflow: visible !important }
         }
     }
     .type > .data > .row > .count { font-size: 16px }
@@ -70,11 +75,10 @@
         @extend .fadable;
         position: absolute;
         text-align: center;
-        background-color: #88CB53;
         .data {
             padding: 0;
             color: #12202D;
-            border: 2px solid #74B73F;
+            border: 2px solid transparent;
             .row { margin: 0 }
             .count { font-size: 20px }
             .percent { font-size: 18px }

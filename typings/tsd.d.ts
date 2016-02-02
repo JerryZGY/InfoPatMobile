@@ -4,4 +4,5 @@
 /// <reference path="node/node.d.ts" />
 /// <reference path="winston/winston.d.ts" />
 /// <reference path="jquery/jquery.d.ts" />
+/// <reference path="meteor/meteor.d.ts" />
 undefined

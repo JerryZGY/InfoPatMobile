@@ -1,4 +1,4 @@
-// A wrapper for d4nyll:odometeor 0.2.1
+// A second layer wrapper for d4nyll:odometeor 0.2.1
 // Original library: http://github.hubspot.com/odometer
 // Wrapped library: https://github.com/d4nyll/odometeor
 interface DynamicCounterOptions {
@@ -19,7 +19,7 @@ export class DynamicCounter {
             // Change how long the javascript expects the CSS animation to take
             duration: duration || 750,
             // Specify the theme (if you have more than one theme css file on the page)
-            theme: "plaza",
+            theme: "default",
             // Count is a simpler animation method which just increments the value
             animation: "count"
         };
