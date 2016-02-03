@@ -6,19 +6,19 @@
   "bundle": "typings/tsd.d.ts",
   "installed": {
     "jquery/jquery.d.ts": {
-      "commit": "984a41af67d76b5134e0d4991a30f813dfb8561f"
+      "commit": "e69fe60f2d6377ea4fae539493997b098f52cad1"
     },
     "d3/d3.d.ts": {
-      "commit": "2e7a477ac2b6471055aa6e0e56b333e8f327d6b7"
+      "commit": "e69fe60f2d6377ea4fae539493997b098f52cad1"
     },
     "node/node.d.ts": {
-      "commit": "86dbea8fc37d9473fee465da4f0a21bea4f8cbd9"
+      "commit": "e69fe60f2d6377ea4fae539493997b098f52cad1"
     },
     "winston/winston.d.ts": {
-      "commit": "86dbea8fc37d9473fee465da4f0a21bea4f8cbd9"
+      "commit": "e69fe60f2d6377ea4fae539493997b098f52cad1"
     },
     "meteor/meteor.d.ts": {
-      "commit": "717a5fdb079f8dd7c19f1b22f7f656dd990f0ccf"
+      "commit": "e69fe60f2d6377ea4fae539493997b098f52cad1"
     }
   }
 }
