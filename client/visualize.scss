@@ -1,0 +1,67 @@
+@import "lib/scss/common";
+.visualize {
+    float: left;
+    width: 100%;
+    padding: 3px;
+    color: white;
+    text-align: center;
+    background-color: #1C1B20;
+    .card-wrapper {
+        float: left;
+        width: 100%;
+        .info-card {
+            width: 50%;
+            float: left;
+            padding: 3px;
+            height: 105px;
+            span {
+                opacity: .7;
+                height: 33px;
+                display: block;
+                line-height: 33px;
+            }
+            .material-icons { font-size: 25px }
+            .year { font-size: 20px }
+            .count {
+                opacity: 1;
+                font-size: 35px;
+            }
+        }
+    }
+    .counter-wrapper {
+        width: 50%;
+        margin: auto;
+        position: relative;
+        .odometeor {
+            width: 100%;
+            height: 1.1em;
+            color: white;
+            font-size: 22px;
+            @extend .absolute;
+        }
+    }
+    @media #{$small-screen} { .counter-wrapper .odometeor { font-size: 32px } }
+    @media #{$medium-screen} { .counter-wrapper .odometeor { font-size: 36px } }
+    @media #{$large-screen} {
+        .card-wrapper .info-card { width: 33.3% }
+        .counter-wrapper .odometeor { font-size: 40px }
+    }
+    @media #{$maximum-screen} {
+        .card-wrapper { width: 50% }
+        .counter-wrapper {
+            float: left;
+            padding: 50px 0;
+            svg { max-width: 314px }
+            .odometeor { font-size: 40px }
+        }
+    }
+    @media #{$extra-screen} {
+        .card-wrapper { width: 50% }
+        .counter-wrapper {
+            padding: 0;
+            float: left;
+            svg { max-width: 414px }
+            .odometeor { font-size: 58px; }
+        }
+    }
+}

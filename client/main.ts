@@ -3,7 +3,6 @@ import {Component, View} from 'angular2/core';
 import {Logger} from 'lib/logger';
 import {RadioControlValueAccessor} from "client/lib/ts/radio_value_accessor";
 import {Analyze} from "client/analyze"
-
 @Component({ selector: 'main' })
 
 @View({

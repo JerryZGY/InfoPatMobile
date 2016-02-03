@@ -20,7 +20,7 @@ class ParsedData implements IParsedData {
     }
     
     private parse(aggs: Aggs): ParsedContent[] {
-        return aggs.buckets.slice(0, 6).map((x) => { return <ParsedContent>{ "key": x.key_as_string || x.key, "count": x.doc_count } });
+        return aggs.buckets.slice(0, 8).map((x) => { return <ParsedContent>{ "key": x.key_as_string || x.key, "count": x.doc_count } });
     }
 }
 

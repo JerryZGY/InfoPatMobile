@@ -10,6 +10,7 @@ interface DynamicCounterOptions {
 }
 
 export class DynamicCounter {
+    private counter: HTMLElement;
     constructor(id: string, value: number, format?: string, duration?: number) {
         let options: DynamicCounterOptions = {
             // REQUIRED
@@ -24,7 +25,11 @@ export class DynamicCounter {
             animation: "count"
         };
         Odometeor.create("dynamicCounter", id, options);
-        document.getElementById("dynamicCounter").innerHTML = value.toString();
+        this.counter = document.getElementById("dynamicCounter");
+        this.counter.innerHTML = value.toString();
         document.getElementById(id).remove();
+    }
+    update(value: number) {
+        this.counter.innerHTML = value.toString();
     }
 }
