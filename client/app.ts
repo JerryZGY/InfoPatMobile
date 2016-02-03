@@ -1,21 +1,22 @@
-import {bootstrap} from 'angular2-meteor';
-import {Component, View, provide} from 'angular2/core';
-import {ROUTER_PROVIDERS, ROUTER_DIRECTIVES, RouteConfig, APP_BASE_HREF} from 'angular2/router';
+import {MeteorComponent} from 'angular2-meteor';
+import {MeteorApp} from 'ionic2-meteor';
+import {IonicApp} from 'ionic/ionic';
 import {Main} from 'client/main';
 
-@Component({
-    selector: 'app'
+@MeteorApp({
+    templateUrl: '/client/app.html'
 })
+export class Socially {
+    main: Main;
+    app: IonicApp;
 
-@View({
-    template: '<router-outlet></router-outlet>',
-    directives: [ROUTER_DIRECTIVES]
-})
+    constructor(app: IonicApp) {
+        this.app = app;
+        this.main = Main;
+    }
 
-@RouteConfig([
-    { path: '/', component: Main, as: 'Main', useAsDefault: true }
-])
-
-export class InfoPat { }
-
-bootstrap(InfoPat, [ROUTER_PROVIDERS, provide(APP_BASE_HREF, { useValue: '/' })]);
+    openPage(page) {
+        let nav = this.app.getComponent('nav');
+        nav.push(page);
+    }
+}

@@ -2,6 +2,7 @@ autoupdate@1.2.4
 babel-compiler@5.8.24_1
 babel-runtime@0.1.4
 barbatus:angular2@0.8.3
+barbatus:ionic2-meteor@0.1.3
 barbatus:ng2-compilers@0.1.1
 barbatus:ts-compilers@0.2.7
 barbatus:typescript@0.1.5
@@ -11,11 +12,9 @@ blaze@2.1.3
 blaze-tools@1.0.4
 boilerplate-generator@1.0.4
 caching-compiler@1.0.0
-caching-html-compiler@1.0.2
 callback-hook@1.0.4
 check@1.1.0
 d3js:d3@3.5.8
-d4nyll:odometeor@0.2.1
 ddp@1.2.2
 ddp-client@1.2.1
 ddp-common@1.2.2
@@ -39,7 +38,6 @@ jss:flag-icon@0.7.3
 launch-screen@1.0.4
 livedata@1.0.15
 logging@1.0.8
-materialize:materialize@0.97.5
 meteor@1.1.10
 meteor-base@1.0.1
 meteorhacks:async@1.0.0
@@ -66,8 +64,6 @@ spacebars@1.0.7
 spacebars-compiler@1.0.7
 standard-minifiers@1.0.2
 systemjs:systemjs@0.18.4
-templating@1.1.5
-templating-tools@1.0.0
 tracker@1.0.9
 ui@1.0.8
 underscore@1.0.4

@@ -1,36 +1,23 @@
-<div class="result-wrapper" [ngClass]="{active:isSearched}">
-    <nav>
-        <div class="nav-wrapper">
-            <a class="material-icons center waves-effect waves-light back" (click)="reload()">navigate_before</a>
-            <input name="viewType" type="radio" id="country" value="country" [(ngModel)]="viewType"/>
-            <label for="country" class="material-icons center right">flag</label>
-            <input name="viewType" type="radio" id="type" value="type" [(ngModel)]="viewType"/>
-            <label for="type" class="material-icons center right">merge_type</label>
-            <input name="viewType" type="radio" id="year" value="year" [(ngModel)]="viewType"/>
-            <label for="year" class="material-icons center right">date_range</label>
-            <input name="viewType" type="radio" id="legacy" value="legacy" [(ngModel)]="viewType" checked/>
-            <label for="legacy" class="material-icons center right">reorder</label>
-        </div>
-    </nav>
-    <analyze [ngClass]="{active:isSearched}" [viewTypeProperty]="viewType"></analyze>
-</div>
-<div class="content-wrapper center" [ngClass]="{active:isSearched, focus:isFocus, searching:isSearching}">
-    <div class="logo"></div>
-    <form class="search-wrapper" (submit)="search(text.value)">
-        <div class="material-icons">search</div>
-        <div class="material-icons settings-button waves-effect waves-light" (click)="isActive=true">settings</div>
-        <input #text id="search" (focus)="isFocus=true" (blur)="isFocus=false">
-        <div class="progress">
-            <div class="indeterminate"></div>
-        </div>
-    </form>
-    <div class="flag-wrapper" [ngClass]="{active:isActive}">
-        <i class="flag-icon flag-icon-tw waves-effect waves-light" [ngClass]="{deactivate:tw}" (click)="tw=!tw"></i>
-        <i class="flag-icon flag-icon-cn waves-effect waves-light" [ngClass]="{deactivate:cn}" (click)="cn=!cn"></i>
-        <i class="flag-icon flag-icon-us waves-effect waves-light" [ngClass]="{deactivate:us}" (click)="us=!us"></i>
-        <!--<i class="flag-icon flag-icon-eu waves-effect waves-light" [ngClass]="{deactivate:eu}" (click)="eu=!eu"></i>-->
-        <!--<i class="flag-icon flag-icon-jp waves-effect waves-light" [ngClass]="{deactivate:jp}" (click)="jp=!jp"></i>-->
-        <!--<i class="flag-icon flag-icon-kr waves-effect waves-light" [ngClass]="{deactivate:kr}" (click)="kr=!kr"></i>-->
-    </div>
-</div>
-<div class="overlay" [ngClass]="{active:isActive}" (click)="isActive=false"></div>
+<ion-navbar *navbar>
+    <button menuToggle="leftMenu">
+        <ion-icon name='menu'></ion-icon>
+    </button>
+    <ion-title>
+        Parties
+    </ion-title>
+</ion-navbar>
+<ion-content #content>
+    <ion-list inset>
+        <!--<ion-item *ngFor="#party of parties">
+            {{party.name}}
+            <button [hidden]="!isOwner(party)" clear item-right (click)="removeParty(party)">
+                <ion-icon name="close-circle">
+                </ion-icon>
+            </button>
+            <button clear item-right [navPush]="partyDetails" [navParams]="{partyId: party._id}">
+                <ion-icon name="arrow-forward">
+                </ion-icon>
+            </button>
+        </ion-item>-->
+    </ion-list>
+</ion-content>
