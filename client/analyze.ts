@@ -1,58 +1,38 @@
-import {IParsedData} from 'lib/responser';
-import {Results} from 'collections/results';
-import {MeteorComponent} from 'angular2-meteor';
-import {Component, Input, OnChanges} from 'angular2/core';
-import {DynamicCounter} from 'client/lib/ts/dynamicCounter';
+import {Component, Input, OnChanges, AfterViewInit} from "angular2/core";
+import {ParsedContent} from "lib/responser";
+import {DynamicCounter} from "client/lib/ts/dynamicCounter";
+@Component({ selector: "analyze", templateUrl: "client/analyze.html" })
+export class Analyze implements OnChanges, AfterViewInit {
+    @Input() type: string;
+    @Input() content: ParsedContent[];
+    counter: DynamicCounter;
+    total: number;
 
-@Component({
-    selector: 'analyze',
-    templateUrl: 'client/analyze.html'
-})
-
-export class Analyze extends MeteorComponent implements OnChanges {
-    @Input() viewTypeProperty: string;
-    viewType: string;
-    result: IParsedData;
-    results: Mongo.Cursor<IParsedData>;
-    total: { [key: string]: number };
-
-    constructor() {
-        super();
-        this.subscribe("results", () => {
-            this.results = Results.find();
-            this.autorun(() => {
-                this.result = this.results.fetch()[0];
-                this.total = {
-                    year: this.result.aggs.year.reduce((x, y) => x + y.count, 0),
-                    type: this.result.aggs.type.reduce((x, y) => x + y.count, 0),
-                    country: this.result.aggs.country.reduce((x, y) => x + y.count, 0)
-                }
-            }, true);
-        });
+    ngOnChanges() {
+        this.total = this.content.reduce((x, y) => x + y.count, 0);
     }
 
-    ngOnChanges(changes) {
-        this.viewType = changes["viewTypeProperty"].currentValue;
-        if (this.viewType != "legacy") this.renderChartByViewType();
+    ngAfterViewInit() {
+        this.renderDonutChart();
+        !this.counter ? this.renderDynamicCounter() : this.updateDynamicCounter();
     }
 
-    renderChartByViewType() {
-        d3.select("svg").selectAll("*").remove();
-        var width = 500,
-            height = 500,
-            radius = Math.min(width, height) / 2,
-            color = d3.scale.category20c(),
-            arc = d3.svg.arc().innerRadius(radius - 100).outerRadius(radius - 20),
-            pie = d3.layout.pie().value((d) => { return d["count"]; }),
-            svg = d3.select("svg").append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")"),
-            values = d3.values(this.result.aggs[this.viewType]);
-        svg.datum(values.map((d) => { return { "count": 0 } })).selectAll("path")
+    renderDonutChart() {
+        var data = this.content,
+            size = 364,
+            radius = size / 2 - 10,
+            arc = d3.svg.arc().innerRadius(radius - 40).outerRadius(radius),
+            pie = d3.layout.pie().padAngle(.02).value((d) => { return d["count"]; }),
+            osvg = d3.select(`#${this.type}-svg`);
+        osvg.selectAll("*").remove();
+        var svg = osvg.append("g").attr("transform", "translate(" + size / 2 + "," + size / 2 + ")");
+        svg.datum(data.map((d) => { return { "count": 0 } })).selectAll("path")
             .data(pie)
             .enter().append("path")
-            .attr("fill", (d, i) => { return color(<any>i); })
+            .attr("class", (d, i) => `color-${i}`)
             .attr("d", <any>arc)
             .each(function(d) { this._current = d });
-        svg.datum(values).selectAll("path")
+        svg.datum(data).selectAll("path")
             .data(pie)
             .transition().duration(750)
             .attrTween("d", arcTween);
@@ -61,16 +41,13 @@ export class Analyze extends MeteorComponent implements OnChanges {
             this._current = i(0);
             return (t) => arc(<any>i(t));
         }
-        this.renderDynamicCounterOnSVG(svg);
     }
 
-    renderDynamicCounterOnSVG(svg: d3.Selection<any>) {
-        let infoWrapper = svg.append("foreignObject")
-            .attr({ "x": -125, "y": -50, "width": 250, "height": 100 })
-            .append("xhtml:body")
-            .append("div").attr("class", "info-wrapper");
-        infoWrapper.append("div").attr("class", `info info-${this.viewType}`);
-        infoWrapper.append("div").attr("id", "counter");
-        new DynamicCounter("counter", this.total[this.viewType]);
+    renderDynamicCounter() {
+        this.counter = new DynamicCounter(`${this.type}-dynamic`, this.total);
+    }
+
+    updateDynamicCounter() {
+        this.counter.update(this.total);
     }
 }

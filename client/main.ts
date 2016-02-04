@@ -1,26 +1,31 @@
-import {RouterLink} from 'angular2/router';
-import {Component, View} from 'angular2/core';
-import {Logger} from 'lib/logger';
-import {RadioControlValueAccessor} from "client/lib/ts/radio_value_accessor";
+import {IParsedData, ParsedAggs, ParsedContent} from 'lib/responser';
+import {RouterLink} from "angular2/router";
+import {Results} from 'collections/results';
+import {Component, View} from "angular2/core";
+import {MeteorComponent} from "angular2-meteor";
 import {Analyze} from "client/analyze"
-@Component({ selector: 'main' })
-
-@View({
-    templateUrl: 'client/main.html',
-    directives: [RouterLink, RadioControlValueAccessor, Analyze]
-})
-
-export class Main {
+@Component({ selector: "main", templateUrl: "client/main.html", directives: [RouterLink, Analyze] })
+export class Main extends MeteorComponent {
+    results: Mongo.Cursor<IParsedData>;
+    aggs: { [key: string]: ParsedContent[] }[];
     tw = false;
     cn = true;
     us = true;
-    // eu = false;
-    // jp = false;
-    // kr = false;
     isSearching = false;
     isSearched = false;
     isLegacy = false;
-    viewType = "legacy";
+
+    constructor() {
+        super();
+        this.subscribe("results", () => {
+            this.results = Results.find();
+            this.autorun(() => {
+                this.aggs = [];
+                let aggs = this.results.fetch()[0].aggs;
+                for (var key in aggs) this.aggs.push({ "key": key, "val": aggs[key] })
+            }, true);
+        });
+    }
 
     reload() {
         this.isSearching = false;
@@ -40,7 +45,7 @@ export class Main {
             });
         }
     }
-    
+
     countryCheck(): string[] {
         var countries: string[] = [];
         if (!this.tw) countries.push("TW");

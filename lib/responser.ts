@@ -31,9 +31,9 @@ export interface Aggs {
 }
 
 export interface ParsedAggs {
-    year: ParsedContent[],
-    type: ParsedContent[],
-    country: ParsedContent[]
+    "year": ParsedContent[],
+    "type": ParsedContent[],
+    "country": ParsedContent[]
 }
 
 export interface ParsedContent {

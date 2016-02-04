@@ -1,64 +1,20 @@
-// D3JS categorical color sheet wrapper
-// Source: https://github.com/mbostock/d3/wiki/Ordinal-Scales
-.color-0  { background-color: #3182bd }
-.color-1  { background-color: #6baed6 }
-.color-2  { background-color: #9ecae1 }
-.color-3  { background-color: #c6dbef }
-.color-4  { background-color: #e6550d }
-.color-5  { background-color: #fd8d3c }
-.color-6  { background-color: #fdae6b }
-.color-7  { background-color: #fdd0a2 }
-.color-8  { background-color: #31a354 }
-.color-9  { background-color: #74c476 }
-.color-10 { background-color: #a1d99b }
-.color-11 { background-color: #c7e9c0 }
-.color-12 { background-color: #756bb1 }
-.color-13 { background-color: #9e9ac8 }
-.color-14 { background-color: #bcbddc }
-.color-15 { background-color: #dadaeb }
-.color-16 { background-color: #636363 }
-.color-17 { background-color: #969696 }
-.color-18 { background-color: #bdbdbd }
-.color-19 { background-color: #d9d9d9 }
-
-.colorb-0  { background-color: #393b79 }
-.colorb-1  { background-color: #5254a3 }
-.colorb-2  { background-color: #6b6ecf }
-.colorb-3  { background-color: #9c9ede }
-.colorb-4  { background-color: #637939 }
-.colorb-5  { background-color: #8ca252 }
-.colorb-6  { background-color: #b5cf6b }
-.colorb-7  { background-color: #cedb9c }
-.colorb-8  { background-color: #8c6d31 }
-.colorb-9  { background-color: #bd9e39 }
-.colorb-10 { background-color: #e7ba52 }
-.colorb-11 { background-color: #e7cb94 }
-.colorb-12 { background-color: #843c39 }
-.colorb-13 { background-color: #ad494a }
-.colorb-14 { background-color: #d6616b }
-.colorb-15 { background-color: #e7969c }
-.colorb-16 { background-color: #7b4173 }
-.colorb-17 { background-color: #a55194 }
-.colorb-18 { background-color: #ce6dbd }
-.colorb-19 { background-color: #de9ed6 }
-
-.colorc-0  { background-color: #F44336 }
-.colorc-1  { background-color: #E91E63 }
-.colorc-2  { background-color: #9C27B0 }
-.colorc-3  { background-color: #673AB7 }
-.colorc-4  { background-color: #3F51B5 }
-.colorc-5  { background-color: #2196F3 }
-.colorc-6  { background-color: #03A9F4 }
-.colorc-7  { background-color: #00BCD4 }
-.colorc-8  { background-color: #009688 }
-.colorc-9  { background-color: #4CAF50 }
-.colorc-10 { background-color: #FF5722 }
-.colorc-11 { background-color: #795548 }
-.colorc-12 { background-color: #607D8B }/*material palette*/
-.colorc-13 { background-color: #ad494a }
-.colorc-14 { background-color: #d6616b }
-.colorc-15 { background-color: #e7969c }
-.colorc-16 { background-color: #7b4173 }
-.colorc-17 { background-color: #a55194 }
-.colorc-18 { background-color: #ce6dbd }
-.colorc-19 { background-color: #de9ed6 }
+.color-0  { background-color: #F44336; fill: #F44336; }
+.color-1  { background-color: #E91E63; fill: #E91E63; }
+.color-2  { background-color: #9C27B0; fill: #9C27B0; }
+.color-3  { background-color: #673AB7; fill: #673AB7; }
+.color-4  { background-color: #3F51B5; fill: #3F51B5; }
+.color-5  { background-color: #2196F3; fill: #2196F3; }
+.color-6  { background-color: #03A9F4; fill: #03A9F4; }
+.color-7  { background-color: #00BCD4; fill: #00BCD4; }
+.color-8  { background-color: #009688; fill: #009688; }
+.color-9  { background-color: #4CAF50; fill: #4CAF50; }
+.color-10 { background-color: #FF5722; fill: #FF5722; }
+.color-11 { background-color: #795548; fill: #795548; }
+.color-12 { background-color: #607D8B; fill: #607D8B; }/*material palette*/
+.color-13 { background-color: #ad494a; fill: #ad494a; }
+.color-14 { background-color: #d6616b; fill: #d6616b; }
+.color-15 { background-color: #e7969c; fill: #e7969c; }
+.color-16 { background-color: #7b4173; fill: #7b4173; }
+.color-17 { background-color: #a55194; fill: #a55194; }
+.color-18 { background-color: #ce6dbd; fill: #ce6dbd; }
+.color-19 { background-color: #de9ed6; fill: #de9ed6; }

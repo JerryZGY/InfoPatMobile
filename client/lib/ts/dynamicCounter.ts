@@ -24,8 +24,8 @@ export class DynamicCounter {
             // Count is a simpler animation method which just increments the value
             animation: "count"
         };
-        Odometeor.create("dynamicCounter", id, options);
-        this.counter = document.getElementById("dynamicCounter");
+        Odometeor.create(`${id}Counter`, id, options);
+        this.counter = document.getElementById(`${id}Counter`);
         this.counter.innerHTML = value.toString();
         document.getElementById(id).remove();
     }

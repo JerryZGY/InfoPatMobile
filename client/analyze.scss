@@ -1,110 +1,106 @@
 @import "lib/scss/common";
-.legacy.collection {
-    margin: 0;
+analyze {
+    float: left;
     width: 100%;
-    border: none;
-    border-radius: 0;
-    @extend .fadable;
-    position: absolute;
-    li {
-        height: 84px;
-        padding: 10px 10px 10px 84px;
-        .thumbnail {
-            left: 0;
-            margin: auto 9px;
-            position: absolute;
-            width: $primary-size;
-            height: $primary-size;
-            border: 1px solid #999;
-            box-shadow: 2px 2px 5px -2px #555;
-        }
-        .title {
-            height: 24px;
-            font-size: 16px;
-            overflow: hidden;
-            line-height: 24px;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-        }
-        .no, .date {
-            height: 20px;
-            font-size: 15px;
-            line-height: 20px;
-        }
+    padding: 3px;
+    color: white;
+    overflow: hidden;
+    text-align: center;
+    white-space: nowrap;
+    background-color: white;
+    .title-wrapper {
+        color: black;
+        font-size: 24px;
+        border-bottom: 2px solid black;
+        @media #{$small-screen} { font-size: 28px }
+        @media #{$medium-screen} { font-size: 32px }
+        @media #{$large-screen} { font-size: 36px }
+        @media #{$maximum-screen} { font-size: 40px }
+        @media #{$extra-screen} { font-size: 44px }
+        &.year:before { content: "核准年度分析" }
+        &.type:before { content: "專利類型分析" }
+        &.country:before { content: "專利國別分析" }
     }
-}
-.analyze {
-    @extend .fadable;
-    svg {
-        margin: auto;
-        max-width: 500px;
-        max-height: 500px;
-        display: block;
-        .label {
-            font-size: 35px;
-            text-anchor: middle;
-        }
-        .info-wrapper {
-            text-align: center;
-            @include display-flex;
-            justify-content: center;
-            @include flex-flow(row wrap);
-            .info, .odometeor {
-                width: 250px;
-                height: 50px;
-                padding: 0 !important;
-                color: #000 !important;
-                font-size: 35px !important;
-                font-weight: 400 !important;
-                line-height: 50px !important;
-                background-color: transparent !important;
-                &.info-year:before { content: "核准年度分析" }
-                &.info-type:before { content: "專利類型分析" }
-                &.info-country:before { content: "專利國別分析" }
-            }
-            .odometer-digit { color: #000 !important }
-            .odometer-inside { position: fixed; width: 250px; }
-            .odometer-digit-inner {  overflow: visible !important }
-        }
-    }
-    .type > .data > .row > .count { font-size: 16px }
-    .country, .year, .type {
-        margin: 0;
-        width: 100%;
-        min-width: 296px;
-        @extend .fadable;
-        position: absolute;
-        text-align: center;
-        .data {
-            padding: 0;
-            color: #12202D;
-            border: 2px solid transparent;
-            .row { margin: 0 }
-            .count { font-size: 20px }
-            .percent { font-size: 18px }
-            .current { font-size: 18px }
-            .col { line-height: 48px; padding: 0 }
-        }
-    }
-    .country > .col {
-        .flag, .content {
-            height: 48px;
-            font-size: 20px;
-            line-height: 48px;
-            width: $primary-size;
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-         }
-        .flag {
-            z-index: 2;
+    .content-wrapper {
+        padding: 3px;
+        .chart-wrapper {
+            width: 50%;
+            margin: auto;
             position: relative;
+            .odometeor {
+                width: 100%;
+                height: 1.1em;
+                color: black;
+                font-size: 24px;
+                @extend .absolute;
+            }
+            @media #{$small-screen} { .odometeor { font-size: 28px } }
+            @media #{$medium-screen} { .odometeor { font-size: 32px } }
+            @media #{$large-screen} { .odometeor { font-size: 36px } }
+            @media #{$maximum-screen} {
+                float: left;
+                padding: 50px 0;
+                svg { max-width: 314px }
+                .odometeor { font-size: 40px }
+            }
+            @media #{$extra-screen} {
+                padding: 0;
+                float: left;
+                svg { max-width: 414px }
+                .odometeor { font-size: 44px }
+            }
         }
-        .content {
-            z-index: 1;
-            position: absolute
+        .tiles-wrapper {
+            float: left;
+            width: 100%;
+            .tiles {
+                width: 50%;
+                float: left;
+                padding: 3px;
+                height: 105px;
+                span {
+                    opacity: .7;
+                    height: 33px;
+                    display: block;
+                    line-height: 33px;
+                }
+                .material-icons { font-size: 25px }
+                .key { font-size: 20px }
+                .count {
+                    opacity: 1;
+                    font-size: 24px;
+                }
+            }
+            @media #{$small-screen} {
+                .tiles {
+                    .material-icons { font-size: 27px }
+                    .key { font-size: 22px }
+                    .count { font-size: 28px }
+                }
+            }
+            @media #{$medium-screen} {
+                .tiles {
+                    .material-icons { font-size: 29px }
+                    .key { font-size: 24px }
+                    .count { font-size: 32px }
+                }
+            }
+            @media #{$large-screen} {
+                .tiles {
+                    width: 33.3%;
+                    .material-icons { font-size: 31px }
+                    .key { font-size: 26px }
+                    .count { font-size: 36px }
+                }
+            }
+            @media #{$maximum-screen} {
+                width: 50%;
+                .tiles {
+                    .material-icons { font-size: 33px }
+                    .key { font-size: 28px }
+                    .count { font-size: 36px }
+                }
+            }
         }
-        .percent { width: calc(100% - 64px) }
-        .flag-icon-eu { background-image: url(eu.svg) }
     }
 }
