@@ -3,7 +3,7 @@ import {RemoteServer} from 'server/lib/esAPI';
 import {Logger} from 'lib/logger';
 
 if (Results.find().count() == 0)
-    Results.update(Results.findOne || {}, { $set: new RemoteServer().search("test", []) }, { upsert: true});
+    Results.update(Results.findOne || {}, { $set: new RemoteServer().search("test", []) }, { upsert: true });
 
 Meteor.publish('results', () => Results.find());
 

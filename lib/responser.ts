@@ -18,8 +18,27 @@ export interface Hit {
 
 export interface AllAggs {
     issuedYear_agg: Aggs,
+    publishedYear_agg: Aggs,
+    appliedYear_agg: Aggs,
+    docKind_agg: Aggs,
     applType_agg: Aggs,
-    patentCountry_agg: Aggs
+    patentCountry_agg: Aggs,
+    applicant_agg: Aggs,
+    primaryApplicant_agg: Aggs,
+    assignee_agg: Aggs,
+    primaryAssignee_agg: Aggs,
+    inventor_agg: Aggs,
+    primaryInventor_agg: Aggs,
+    examiner_agg: Aggs,
+    primaryExaminer_agg: Aggs,
+    ipc_agg: Aggs,
+    mainIpc_agg: Aggs,
+    upc_agg: Aggs,
+    mainUpc_agg: Aggs,
+    cpc_agg: Aggs,
+    mainCpc_agg: Aggs,
+    locarno_agg: Aggs,
+    mainLocarno_agg: Aggs
 }
 
 export interface Aggs {
@@ -28,12 +47,6 @@ export interface Aggs {
         key: string;
         doc_count: number;
     }[]
-}
-
-export interface ParsedAggs {
-    "year": ParsedContent[],
-    "type": ParsedContent[],
-    "country": ParsedContent[]
 }
 
 export interface ParsedContent {
@@ -45,6 +58,6 @@ export interface IParsedData {
     total: number;
     hits: Hit[];
     took: number;
-    aggs?: ParsedAggs;
+    aggs?: { [key: string]: ParsedContent[] };
     modifiedAt: Date;
 }

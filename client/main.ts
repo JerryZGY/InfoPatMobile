@@ -1,4 +1,4 @@
-import {IParsedData, ParsedAggs, ParsedContent} from 'lib/responser';
+import {IParsedData, ParsedContent} from 'lib/responser';
 import {RouterLink} from "angular2/router";
 import {Results} from 'collections/results';
 import {Component, View} from "angular2/core";
@@ -22,7 +22,9 @@ export class Main extends MeteorComponent {
             this.autorun(() => {
                 this.aggs = [];
                 let aggs = this.results.fetch()[0].aggs;
-                for (var key in aggs) this.aggs.push({ "key": key, "val": aggs[key] })
+                for (var key in aggs)
+                    if (aggs[key].length != 0)
+                        this.aggs.push({ "key": key, "val": aggs[key] })
             }, true);
         });
     }

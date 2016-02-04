@@ -17,9 +17,28 @@ analyze {
         @media #{$large-screen} { font-size: 36px }
         @media #{$maximum-screen} { font-size: 40px }
         @media #{$extra-screen} { font-size: 44px }
-        &.year:before { content: "核准年度分析" }
-        &.type:before { content: "專利類型分析" }
-        &.country:before { content: "專利國別分析" }
+        &.issuedYear_agg:before         { content: "核准/公告年度分析" }
+        &.publishedYear_agg:before      { content: "公開年度分析" }
+        &.appliedYear_agg:before        { content: "申請年度分析" }
+        &.docKind_agg:before            { content: "專利狀態分析" }
+        &.applType_agg:before           { content: "專利類型分析" }
+        &.patentCountry_agg:before      { content: "專利國別分析" }
+        &.applicant_agg:before          { content: "申請人分析" }
+        &.primaryApplicant_agg:before   { content: "主申請人分析" }
+        &.assignee_agg:before           { content: "專利權人分析" }
+        &.primaryAssignee_agg:before    { content: "主專利權人分析" }
+        &.inventor_agg:before           { content: "發明人分析" }
+        &.primaryInventor_agg:before    { content: "主發明人分析" }
+        &.examiner_agg:before           { content: "審查人分析" }
+        &.primaryExaminer_agg:before    { content: "主審查人分析" }
+        &.ipc_agg:before                { content: "國際分類號分析" }
+        &.mainIpc_agg:before            { content: "主國際分類號分析" }
+        &.upc_agg:before                { content: "美國分類號分析" }
+        &.mainUpc_agg:before            { content: "主美國分類號分析" }
+        &.cpc_agg:before                { content: "合作分類號分析" }
+        &.mainCpc_agg:before            { content: "主合作分類號分析" }
+        &.locarno_agg:before            { content: "國際工業設計分類號分析" }
+        &.mainLocarno_agg:before        { content: "主國際工業設計分類號分析" }
     }
     .content-wrapper {
         padding: 3px;
@@ -65,7 +84,10 @@ analyze {
                     line-height: 33px;
                 }
                 .material-icons { font-size: 25px }
-                .key { font-size: 20px }
+                .key {
+                    font-size: 20px;
+                    &.ipc_agg, &.mainIpc_agg { text-transform: uppercase }
+                }
                 .count {
                     opacity: 1;
                     font-size: 24px;

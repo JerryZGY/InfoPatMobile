@@ -11,11 +11,8 @@ class ParsedData implements IParsedData {
         this.total = res.total;
         this.hits = res.hits;
         this.took = res.took;
-        this.aggs = <ParsedAggs>{
-            year: this.parse(res.aggs.issuedYear_agg),
-            type: this.parse(res.aggs.applType_agg),
-            country: this.parse(res.aggs.patentCountry_agg)
-        };
+        this.aggs = <ParsedAggs>{};
+        for (var agg in res.aggs) this.aggs[agg] = this.parse(res.aggs[agg]);
         this.modifiedAt = new Date();
     }
     
@@ -27,7 +24,30 @@ class ParsedData implements IParsedData {
 export class RemoteServer {
     private remoteServer: any = DDP.connect('http://upat.webpat.co/');
     search(text: string, country: string[]): ParsedData {
-        let options = { "country": country, "enableAggs": true, "aggs": ["issuedYear_agg", "applType_agg", "patentCountry_agg"] };
+        let options = { "country": country, "enableHits": false, "enableAggs": true, "aggs": [
+            "issuedYear_agg",
+            "publishedYear_agg",
+            "appliedYear_agg",
+            "docKind_agg",
+            "applType_agg",
+            "patentCountry_agg",
+            "applicant_agg",
+            "primaryApplicant_agg",
+            "assignee_agg",
+            "primaryAssignee_agg",
+            "inventor_agg",
+            "primaryInventor_agg",
+            "examiner_agg",
+            "primaryExaminer_agg",
+            "ipc_agg",
+            "mainIpc_agg",
+            "upc_agg",
+            "mainUpc_agg",
+            "cpc_agg",
+            "mainCpc_agg",
+            "locarno_agg",
+            "mainLocarno_agg"
+        ] };
         return new ParsedData(this.remoteServer.call("patent_search", text, 10, 0, options));
     }
     searchAggs(text: string, aggName: string, aggSize = 20, options: Object) {
