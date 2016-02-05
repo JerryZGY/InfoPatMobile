@@ -15,22 +15,15 @@ main {
                 @include user-select(none);
                 line-height: $primary-size;
             }
-            [type="radio"] + label {
-                padding: 0;
-                width: 58px;
-                color: white;
-                font-size: 32px;
-                margin: 19.5px 0;
-                vertical-align: middle;
-                &:before, &:after { display: none }
-            }
-            [type="radio"]:not(:checked) + label { opacity: .5 }
         }
         .analyze-wrapper {
             top: 64px;
+            height: 0;
             width: 100%;
+            overflow: hidden;
             position: absolute;
         }
+        &.active > .analyze-wrapper { height: auto }
     }
     > .content-wrapper {
         opacity: 1;

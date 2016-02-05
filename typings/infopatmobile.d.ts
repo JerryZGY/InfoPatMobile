@@ -1,3 +1,5 @@
+/// <reference path="main.d.ts" />
+/// <reference path="angular2-meteor/angular2-meteor.d.ts" />
 // Type definitions for meteorhacks:npm 1.5.0
 // https://github.com/meteorhacks/npm/
 // Modify by: JerryZGY

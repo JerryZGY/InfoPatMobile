@@ -4,41 +4,18 @@ analyze {
     width: 100%;
     padding: 3px;
     color: white;
-    overflow: hidden;
     text-align: center;
-    white-space: nowrap;
     background-color: white;
+    @media #{$full-screen} { width: 50% }
     .title-wrapper {
         color: black;
         font-size: 24px;
         border-bottom: 2px solid black;
-        @media #{$small-screen} { font-size: 28px }
-        @media #{$medium-screen} { font-size: 32px }
-        @media #{$large-screen} { font-size: 36px }
-        @media #{$maximum-screen} { font-size: 40px }
-        @media #{$extra-screen} { font-size: 44px }
-        &.issuedYear_agg:before         { content: "核准/公告年度分析" }
-        &.publishedYear_agg:before      { content: "公開年度分析" }
-        &.appliedYear_agg:before        { content: "申請年度分析" }
-        &.docKind_agg:before            { content: "專利狀態分析" }
-        &.applType_agg:before           { content: "專利類型分析" }
-        &.patentCountry_agg:before      { content: "專利國別分析" }
-        &.applicant_agg:before          { content: "申請人分析" }
-        &.primaryApplicant_agg:before   { content: "主申請人分析" }
-        &.assignee_agg:before           { content: "專利權人分析" }
-        &.primaryAssignee_agg:before    { content: "主專利權人分析" }
-        &.inventor_agg:before           { content: "發明人分析" }
-        &.primaryInventor_agg:before    { content: "主發明人分析" }
-        &.examiner_agg:before           { content: "審查人分析" }
-        &.primaryExaminer_agg:before    { content: "主審查人分析" }
-        &.ipc_agg:before                { content: "國際分類號分析" }
-        &.mainIpc_agg:before            { content: "主國際分類號分析" }
-        &.upc_agg:before                { content: "美國分類號分析" }
-        &.mainUpc_agg:before            { content: "主美國分類號分析" }
-        &.cpc_agg:before                { content: "合作分類號分析" }
-        &.mainCpc_agg:before            { content: "主合作分類號分析" }
-        &.locarno_agg:before            { content: "國際工業設計分類號分析" }
-        &.mainLocarno_agg:before        { content: "主國際工業設計分類號分析" }
+        @media #{$small-screen} { font-size: 26px }
+        @media #{$medium-screen} { font-size: 28px }
+        @media #{$large-screen} { font-size: 30px }
+        @media #{$maximum-screen} { font-size: 32px }
+        @media #{$extra-screen} { font-size: 34px }
     }
     .content-wrapper {
         padding: 3px;
@@ -46,83 +23,192 @@ analyze {
             width: 50%;
             margin: auto;
             position: relative;
-            .odometeor {
+            .info-wrapper {
+                top: 0px;
                 width: 100%;
-                height: 1.1em;
+                height: 100%;
                 color: black;
-                font-size: 24px;
-                @extend .absolute;
-            }
-            @media #{$small-screen} { .odometeor { font-size: 28px } }
-            @media #{$medium-screen} { .odometeor { font-size: 32px } }
-            @media #{$large-screen} { .odometeor { font-size: 36px } }
-            @media #{$maximum-screen} {
-                float: left;
-                padding: 50px 0;
-                svg { max-width: 314px }
-                .odometeor { font-size: 40px }
+                position: absolute;
+                .odometeor, .info-icon {
+                    width: 100%;
+                    height: 45%;
+                    display: block;
+                    font-size: 24px;
+                    position: relative;
+                }
+                .material-icons {
+                    left: 0px;
+                    right: 0px;
+                    bottom: 0px;
+                    position: absolute;
+                }
+                .odometeor, .material-icons {
+                    @media #{$small-screen} { font-size: 28px }
+                    @media #{$medium-screen} { font-size: 32px }
+                    @media #{$large-screen} { font-size: 36px }
+                    @media #{$maximum-screen} { font-size: 40px }
+                }
             }
             @media #{$extra-screen} {
-                padding: 0;
                 float: left;
-                svg { max-width: 414px }
+                padding: 44.5px 0;
+                svg { max-width: 325px }
                 .odometeor { font-size: 44px }
             }
         }
         .tiles-wrapper {
             float: left;
             width: 100%;
+            @media #{$extra-screen} { width: 50% }
             .tiles {
                 width: 50%;
                 float: left;
                 padding: 3px;
                 height: 105px;
-                span {
-                    opacity: .7;
+                span, .key-wrapper {
                     height: 33px;
+                    opacity: .7;
                     display: block;
                     line-height: 33px;
                 }
                 .material-icons { font-size: 25px }
                 .key {
-                    font-size: 20px;
-                    &.ipc_agg, &.mainIpc_agg { text-transform: uppercase }
+                    opacity: 1;
+                    height: auto;
+                    line-height: 1;
+                    font-size: 17px;
+                    display: inline-block;
+                    vertical-align: middle;
                 }
                 .count {
                     opacity: 1;
                     font-size: 24px;
                 }
-            }
-            @media #{$small-screen} {
-                .tiles {
+                @media #{$small-screen} {
                     .material-icons { font-size: 27px }
                     .key { font-size: 22px }
                     .count { font-size: 28px }
                 }
-            }
-            @media #{$medium-screen} {
-                .tiles {
+                @media #{$medium-screen} {
                     .material-icons { font-size: 29px }
                     .key { font-size: 24px }
                     .count { font-size: 32px }
                 }
-            }
-            @media #{$large-screen} {
-                .tiles {
-                    width: 33.3%;
+                @media #{$large-screen} {
                     .material-icons { font-size: 31px }
                     .key { font-size: 26px }
                     .count { font-size: 36px }
                 }
-            }
-            @media #{$maximum-screen} {
-                width: 50%;
-                .tiles {
+                @media #{$maximum-screen} {
                     .material-icons { font-size: 33px }
                     .key { font-size: 28px }
                     .count { font-size: 36px }
                 }
             }
         }
+    }
+
+    .response-key {
+        line-height: 32px;
+        .key { font-size: 15.5px }
+    }
+
+    &#issuedYear_agg {
+        .info-icons:before { content: "done_all date_range" }
+        .title-wrapper:before { content: "核准/公告年度分析" }
+    }
+    &#publishedYear_agg {
+        .info-icons:before { content: "done date_range" }
+        .title-wrapper:before { content: "公開年度分析" }
+    }
+    &#appliedYear_agg {
+        .info-icons:before { content: "compare_arrows date_range" }
+        .title-wrapper:before { content: "申請年度分析" }
+    }
+    &#docKind_agg {
+        .info-icons:before { content: "info_outline" }
+        .title-wrapper:before { content: "專利狀態分析" }
+    }
+    &#applType_agg {
+        .info-icons:before { content: "merge_type" }
+        .title-wrapper:before { content: "專利類型分析" }
+    }
+    &#patentCountry_agg {
+        .info-icons:before { content: "flag" }
+        .title-wrapper:before { content: "專利國別分析" }
+    }
+    &#applicant_agg {
+        .key-wrapper { @extend .response-key }
+        .info-icons:before { content: "compare_arrows assignment_ind" }
+        .title-wrapper:before { content: "申請人分析" }
+    }
+    &#primaryApplicant_agg {
+        .key-wrapper { @extend .response-key }
+        .info-icons:before { content: "star compare_arrows assignment_ind" }
+        .title-wrapper:before { content: "主申請人分析" }
+    }
+    &#assignee_agg {
+        .key-wrapper { @extend .response-key }
+        .info-icons:before { content: "copyright assignment_ind" }
+        .title-wrapper:before { content: "專利權人分析" }
+    }
+    &#primaryAssignee_agg {
+        .key-wrapper { @extend .response-key }
+        .info-icons:before { content: "star copyright assignment_ind" }
+        .title-wrapper:before { content: "主專利權人分析" }
+    }
+    &#inventor_agg {
+        .key-wrapper { @extend .response-key }
+        .info-icons:before { content: "lightbulb_outline assignment_ind" }
+        .title-wrapper:before { content: "發明人分析" }
+    }
+    &#primaryInventor_agg {
+        .key-wrapper { @extend .response-key }
+        .info-icons:before { content: "star lightbulb_outline assignment_ind" }
+        .title-wrapper:before { content: "主發明人分析" }
+    }
+    &#examiner_agg {
+        .key-wrapper { @extend .response-key }
+        .info-icons:before { content: "search assignment_ind" }
+        .title-wrapper:before { content: "審查人分析" }
+    }
+    &#primaryExaminer_agg {
+        .key-wrapper { @extend .response-key }
+        .info-icons:before { content: "star search assignment_ind" }
+        .title-wrapper:before { content: "主審查人分析" }
+    }
+    &#ipc_agg {
+        .key { text-transform: uppercase }
+        .info-icons:before { content: "account_balance_wallet" }
+        .title-wrapper:before { content: "國際分類號分析" }
+    }
+    &#mainIpc_agg {
+        .key { text-transform: uppercase }
+        .info-icons:before { content: "staraccount_balance_wallet" }
+        .title-wrapper:before { content: "主國際分類號分析" }
+    }
+    &#upc_agg {
+        .info-icons:before { content: "account_balance" }
+        .title-wrapper:before { content: "美國分類號分析" }
+    }
+    &#mainUpc_agg {
+        .info-icons:before { content: "staraccount_balance" }
+        .title-wrapper:before { content: "主美國分類號分析" }
+    }
+    &#cpc_agg {
+        .info-icons:before { content: "group_add" }
+        .title-wrapper:before { content: "合作分類號分析" }
+    }
+    &#mainCpc_agg {
+        .info-icons:before { content: "star group_add" }
+        .title-wrapper:before { content: "主合作分類號分析" }
+    }
+    &#locarno_agg {
+        .info-icons:before { content: "flare" }
+        .title-wrapper:before { content: "國際工業設計分類號分析" }
+    }
+    &#mainLocarno_agg {
+        .info-icons:before { content: "star flare" }
+        .title-wrapper:before { content: "主國際工業設計分類號分析" }
     }
 }

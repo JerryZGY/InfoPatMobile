@@ -49,6 +49,10 @@ export interface Aggs {
     }[]
 }
 
+export interface ParsedAggs {
+    [key: string]: ParsedContent[];
+}
+
 export interface ParsedContent {
     key: string;
     count: number;
@@ -58,6 +62,6 @@ export interface IParsedData {
     total: number;
     hits: Hit[];
     took: number;
-    aggs?: { [key: string]: ParsedContent[] };
+    aggs?: ParsedAggs;
     modifiedAt: Date;
 }

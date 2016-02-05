@@ -8,7 +8,7 @@ export class Analyze implements OnChanges, AfterViewInit {
     counter: DynamicCounter;
     total: number;
 
-    ngOnChanges() { this.total = this.content.reduce((x, y) => x + y.count, 0); }
+    ngOnChanges() { this.total = this.content.reduce((x, y) => x + y.count, 0) }
 
     ngAfterViewInit() {
         this.renderDonutChart();

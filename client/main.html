@@ -1,11 +1,11 @@
-<div class="result-wrapper" [ngClass]="{active:isSearched}">
+<div class="result-wrapper" *ngIf="isSearched" [ngClass]="{active:isSearched}">
     <nav>
         <div class="nav-wrapper">
             <a class="material-icons center waves-effect waves-light back" (click)="reload()">navigate_before</a>
         </div>
     </nav>
     <div class="analyze-wrapper">
-        <analyze *ngFor="#agg of aggs" [type]="agg.key" [content]="agg.val"></analyze>
+        <analyze *ngFor="#agg of aggs" id="{{agg.key}}" [type]="agg.key" [content]="agg.val"></analyze>
     </div>
 </div>
 <div class="content-wrapper center" [ngClass]="{active:isSearched, focus:isFocus, searching:isSearching}">
