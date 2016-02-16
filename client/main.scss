@@ -10,6 +10,7 @@ main {
             line-height: $primary-size;
             background-color: $primary-color;
             a {
+                position: absolute;
                 width: $primary-size;
                 height: $primary-size;
                 @include user-select(none);
@@ -19,6 +20,7 @@ main {
         .analyze-wrapper {
             top: 64px;
             height: 0;
+            z-index: 0;
             width: 100%;
             overflow: hidden;
             position: absolute;

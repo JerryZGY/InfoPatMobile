@@ -1,0 +1,12 @@
+@import "lib/scss/common";
+detail {
+    width: 100% !important;
+    .tiles-wrapper {
+        width: 100% !important;
+        .tiles {
+            @media #{$maximum-screen} { width: 33.3% !important }
+            @media #{$extra-screen} { width: 25% !important }
+            @media #{$full-screen} { width: 12.5% !important }
+        }
+    }
+}

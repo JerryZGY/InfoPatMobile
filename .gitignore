@@ -1,3 +1,2 @@
 typings/*
-!typings/tsd.d.ts
 !typings/infopatmobile.d.ts

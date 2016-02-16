@@ -1,17 +1,16 @@
-<div class="title-wrapper"></div>
 <div class="content-wrapper">
     <div class="chart-wrapper">
-        <svg id="{{type}}-svg" viewBox="0 0 364 364" preserveAspectRatio="xMinYMin meet"></svg>
-        <div class="info-wrapper">
+        <svg viewBox="0 0 364 364" preserveAspectRatio="xMinYMin meet"></svg>
+        <!--<div class="info-wrapper">
             <div class="info-icon"><span class="info-icons material-icons"></span></div>
             <div id="{{type}}-dynamic"></div>
-        </div>
+        </div>-->
     </div>
     <div class="tiles-wrapper">
         <div class="tiles" *ngFor="#data of content; #i = index">
             <div class="tile color-{{i}}">
-                <span class="material-icons">timeline</span>
-                <span class="count">{{data.count / total | percent:'1.0-1'}}</span>
+                <span class="material-icons">show_chart</span>
+                <span class="count">{{data.count | number}}</span>
                 <div class="key-wrapper"><span class="key">{{data.key}}</span></div>
             </div>
         </div>

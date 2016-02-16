@@ -4,8 +4,10 @@ import {Results} from 'collections/results';
 import {Component, View} from "angular2/core";
 import {MeteorComponent} from "angular2-meteor";
 import {Analyze} from "client/analyze"
-@Component({ selector: "main", templateUrl: "client/main.html", directives: [RouterLink, Analyze] })
+import {Detail} from "client/detail";
+@Component({ selector: "main", templateUrl: "client/main.html", directives: [RouterLink, Analyze, Detail] })
 export class Main extends MeteorComponent {
+    token: string;
     results: Mongo.Cursor<IParsedData>;
     aggs: { [key: string]: ParsedContent[] }[];
     tw = false;
@@ -14,17 +16,21 @@ export class Main extends MeteorComponent {
     isSearching = false;
     isSearched = false;
     isLegacy = false;
+    detailType;
+    detailContent;
 
     constructor() {
         super();
+        this.token = Random.id();
         this.subscribe("results", () => {
-            this.results = Results.find();
+            this.results = Results.find({ _id: this.token });
             this.autorun(() => {
-                this.aggs = [];
-                let aggs = this.results.fetch()[0].aggs;
-                for (var key in aggs)
-                    if (aggs[key].length != 0)
-                        this.aggs.push({ "key": key, "val": aggs[key] })
+                if (this.results.fetch().length != 0) {
+                    this.aggs = [];
+                    let aggs = this.results.fetch()[0].aggs;
+                    for (var key in aggs)
+                        if (aggs[key].length != 0) this.aggs.push({ "key": key, "val": aggs[key] })
+                }
             }, true);
         });
     }
@@ -35,12 +41,12 @@ export class Main extends MeteorComponent {
         $("#legacy").click();
         $("#search").focus();
     }
-
+    
     search(text) {
         if (text) {
             $("#search").blur();
             this.isSearching = true;
-            Meteor.call("search", text, this.countryCheck(), (err, res) => {
+            Meteor.call("search", text, this.countryCheck(), this.token, () => {
                 this.isSearching = false;
                 this.isSearched = true;
                 this.isLegacy = true;
@@ -54,5 +60,11 @@ export class Main extends MeteorComponent {
         if (!this.cn) countries.push("CN");
         if (!this.us) countries.push("US");
         return countries
+    }
+    
+    detail(key: string) {
+        $("analyze").hide();
+        this.detailType = key;
+        this.detailContent = this.results.fetch()[0].aggs[key];
     }
 }

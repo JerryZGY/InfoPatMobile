@@ -1,5 +1,5 @@
 @import "lib/scss/common";
-analyze {
+analyze, detail {
     float: left;
     width: 100%;
     padding: 3px;
@@ -210,5 +210,8 @@ analyze {
     &#mainLocarno_agg {
         .info-icons:before { content: "star flare" }
         .title-wrapper:before { content: "主國際工業設計分類號分析" }
+    }
+    &.waves-effect.waves-main .waves-ripple {
+      background-color: rgba(116, 183, 63, 0.65);
     }
 }
