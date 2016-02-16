@@ -1,12 +1,32 @@
 @import "lib/scss/common";
 detail {
     width: 100% !important;
+    .chart-wrapper {
+        width: 100% !important;
+        @media #{$extra-screen} {
+            svg { max-width: none !important }
+        }
+    }
     .tiles-wrapper {
         width: 100% !important;
         .tiles {
+            height: 129px !important;
             @media #{$maximum-screen} { width: 33.3% !important }
             @media #{$extra-screen} { width: 25% !important }
             @media #{$full-screen} { width: 12.5% !important }
+            .progress {
+                margin: 0px;
+                height: 24px;
+                .determinate-info {
+                    left: 0px;
+                    right: 0px;
+                    height: 24px;
+                    color: black;
+                    font-size: 20px;
+                    line-height: 24px;
+                    position: absolute;
+                }
+            }
         }
     }
 }
