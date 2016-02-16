@@ -1,13 +1,22 @@
+<div class="info-wrapper">
+    <div class="info-icon">
+        <span class="info-icons material-icons"></span>
+        <span class="title-wrapper"></span>
+    </div>
+    <div id="detail-dynamic"></div>
+</div>
 <div class="content-wrapper">
     <div class="tiles-wrapper">
         <div class="tiles" *ngFor="#data of content; #i = index">
-            <div class="tile color-{{i}}">
-                <span class="material-icons">show_chart</span>
-                <span class="count">{{data.count | number}}</span>
-                <div class="key-wrapper"><span class="key">{{data.key}}</span></div>
-                <div class="progress">
-                    <div class="determinate" style="width: {{data.count / total | percent:'1.0-1'}}"></div>
-                    <div class="determinate-info">{{data.count / total | percent:'1.0-1'}}</div>
+            <div class="tap-overlay waves-effect">
+                <div class="tile color-{{i}}">
+                    <span class="material-icons">show_chart</span>
+                    <span class="count">{{data.count | number}}</span>
+                    <div class="key-wrapper"><span class="key">{{data.key}}</span></div>
+                    <div class="progress">
+                        <div class="determinate" style="width: {{data.count / total | percent:'1.0-1'}}"></div>
+                        <div class="determinate-info">{{data.count / total | percent:'1.0-1'}}</div>
+                    </div>
                 </div>
             </div>
         </div>

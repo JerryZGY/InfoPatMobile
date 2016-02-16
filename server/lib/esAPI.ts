@@ -1,4 +1,5 @@
 import {Response, Aggs, Hit, ParsedAggs, ParsedContent, IParsedData} from 'lib/responser';
+import {Logger} from 'lib/logger';
 
 class ParsedData implements IParsedData {
     total: number;
@@ -12,18 +13,27 @@ class ParsedData implements IParsedData {
         this.hits = res.hits;
         this.took = res.took;
         this.aggs = <ParsedAggs>{};
-        for (var agg in res.aggs) this.aggs[agg] = this.parse(res.aggs[agg]);
+        for (var agg in res.aggs) {
+            let data = this.parse(res.aggs[agg]);
+            if (data.length != 0)
+                this.aggs[agg] = data;
+        }
         this.modifiedAt = new Date();
     }
     
     private parse(aggs: Aggs): ParsedContent[] {
-        return aggs.buckets.slice(0, 8).map((x) => { return <ParsedContent>{ "key": x.key_as_string || x.key, "count": x.doc_count } });
+        return aggs.buckets.map((x) => { return <ParsedContent>{ "key": x.key_as_string || x.key, "count": x.doc_count } });
+    }
+    
+    private parseSlice(aggs: Aggs, section: number): ParsedContent[] {
+        return aggs.buckets.slice(0, section).map((x) => { return <ParsedContent>{ "key": x.key_as_string || x.key, "count": x.doc_count } });
     }
 }
 
 export class RemoteServer {
     private remoteServer: any = DDP.connect('http://upat.webpat.co/');
     search(text: string, country: string[]): ParsedData {
+        new Logger().debug(">>> EsAPI search call");
         let options = { "country": country, "enableHits": false, "enableAggs": true, "aggs": [
             "issuedYear_agg",
             "publishedYear_agg",

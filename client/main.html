@@ -1,13 +1,10 @@
 <div class="result-wrapper" *ngIf="isSearched" [ngClass]="{active:isSearched}">
     <nav>
-        <div class="nav-wrapper">
-            <a class="brand-logo center">概觀</a>
-            <a class="material-icons center waves-effect waves-light back" (click)="reload()">navigate_before</a>
-        </div>
+        <a class="material-icons center waves-effect waves-light back" (click)="back()">navigate_before</a>
     </nav>
     <div class="analyze-wrapper">
-        <analyze *ngFor="#agg of aggs" id="{{agg.key}}" class="waves-effect waves-main" [type]="agg.key" [content]="agg.val" (click)="detail(agg.key)"></analyze>
-        <detail *ngIf="detailContent" id="{{detailType}}" [content]="detailContent"></detail>
+        <analyze *ngFor="#agg of aggs" id="{{agg.key}}" [type]="agg.key" [content]="agg.val" (click)="showDetail(agg.key)" [ngClass]="{active:!isDetail}"></analyze>
+        <detail id="{{detailType}}" [content]="detailContent" [ngClass]="{active:isDetail}"></detail>
     </div>
 </div>
 <div class="content-wrapper center" [ngClass]="{active:isSearched, focus:isFocus, searching:isSearching}">

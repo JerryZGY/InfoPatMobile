@@ -1,12 +1,14 @@
 @import "lib/scss/common";
+analyze > .tap-overlay { width: 100% }
 analyze, detail {
     float: left;
     width: 100%;
-    padding: 3px;
     color: white;
+    @extend .fadable;
     text-align: center;
     background-color: white;
     @media #{$full-screen} { width: 50% }
+    &.active { padding: 3px }
     .title-wrapper {
         color: black;
         font-size: 24px;

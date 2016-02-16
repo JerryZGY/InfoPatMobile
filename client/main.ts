@@ -16,6 +16,7 @@ export class Main extends MeteorComponent {
     isSearching = false;
     isSearched = false;
     isLegacy = false;
+    isDetail = false;
     detailType;
     detailContent;
 
@@ -24,26 +25,39 @@ export class Main extends MeteorComponent {
         this.token = Random.id();
         this.subscribe("results", () => {
             this.results = Results.find({ _id: this.token });
-            this.autorun(() => {
-                if (this.results.fetch().length != 0) {
-                    this.aggs = [];
-                    let aggs = this.results.fetch()[0].aggs;
-                    for (var key in aggs)
-                        if (aggs[key].length != 0) this.aggs.push({ "key": key, "val": aggs[key] })
-                }
-            }, true);
+            this.autorun(() => this.assignKeyToAggArray(), true);
         });
     }
 
-    reload() {
-        this.isSearching = false;
-        this.isSearched = false;
-        $("#legacy").click();
-        $("#search").focus();
+    assignKeyToAggArray() {
+        if (this.results.fetch().length != 0) {
+            this.aggs = [];
+            let aggs = this.results.fetch()[0].aggs;
+            for (var key in aggs)
+                //assign the first eight aggs.
+                this.aggs.push({ "key": key, "val": aggs[key].slice(0, 8) });
+        }
     }
-    
+
+    setDefaultScrollPosition() {
+        $("html").scrollTop(0);
+    }
+
+    back() {
+        if (!this.isDetail) {
+            this.isSearching = false;
+            this.isSearched = false;
+            $("#legacy").click();
+            $("#search").focus();
+        } else {
+            this.setDefaultScrollPosition();
+            this.isDetail = false;
+        }
+    }
+
     search(text) {
         if (text) {
+            this.setDefaultScrollPosition();
             $("#search").blur();
             this.isSearching = true;
             Meteor.call("search", text, this.countryCheck(), this.token, () => {
@@ -61,10 +75,11 @@ export class Main extends MeteorComponent {
         if (!this.us) countries.push("US");
         return countries
     }
-    
-    detail(key: string) {
-        $("analyze").hide();
+
+    showDetail(key: string) {
+        this.setDefaultScrollPosition();
         this.detailType = key;
         this.detailContent = this.results.fetch()[0].aggs[key];
+        this.isDetail = true;
     }
 }

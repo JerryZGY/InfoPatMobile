@@ -41,11 +41,6 @@ export class Analyze implements OnChanges, AfterViewInit {
         }
     }
 
-    renderDynamicCounter() {
-        this.counter = new DynamicCounter(`${this.type}-dynamic`, this.total);
-    }
-
-    updateDynamicCounter() {
-        this.counter.update(this.total);
-    }
+    renderDynamicCounter() { this.counter = new DynamicCounter(`${this.type}-dynamic`, this.total) }
+    updateDynamicCounter() { this.counter.update(this.total) }
 }

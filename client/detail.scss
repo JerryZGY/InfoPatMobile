@@ -1,6 +1,23 @@
 @import "lib/scss/common";
 detail {
     width: 100% !important;
+    .info-wrapper, .info-icons {
+        color: black;
+        font-size: 24px;
+        vertical-align: middle;
+        @media #{$small-screen} { font-size: 26px }
+        @media #{$medium-screen} { font-size: 28px }
+        @media #{$large-screen} { font-size: 30px }
+        @media #{$maximum-screen} { font-size: 32px }
+        @media #{$extra-screen} { font-size: 34px }
+    }
+    .info-wrapper {
+        border-bottom: 2px solid black;
+        .title-wrapper {
+            vertical-align: middle;
+            border-bottom: none;
+        }
+    }
     .chart-wrapper {
         width: 100% !important;
         @media #{$extra-screen} {
@@ -14,17 +31,21 @@ detail {
             @media #{$maximum-screen} { width: 33.3% !important }
             @media #{$extra-screen} { width: 25% !important }
             @media #{$full-screen} { width: 12.5% !important }
-            .progress {
-                margin: 0px;
-                height: 24px;
-                .determinate-info {
-                    left: 0px;
-                    right: 0px;
+            .tap-overlay {
+                width: 100%;
+                height: 100%;
+                .progress {
+                    margin: 0px;
                     height: 24px;
-                    color: black;
-                    font-size: 20px;
-                    line-height: 24px;
-                    position: absolute;
+                    .determinate-info {
+                        left: 0px;
+                        right: 0px;
+                        height: 24px;
+                        color: black;
+                        font-size: 20px;
+                        line-height: 24px;
+                        position: absolute;
+                    }
                 }
             }
         }
