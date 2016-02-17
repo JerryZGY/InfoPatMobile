@@ -4,11 +4,9 @@ analyze, detail {
     float: left;
     width: 100%;
     color: white;
-    @extend .fadable;
     text-align: center;
     background-color: white;
     @media #{$full-screen} { width: 50% }
-    &.active { padding: 3px }
     .title-wrapper {
         color: black;
         font-size: 24px;
@@ -19,7 +17,7 @@ analyze, detail {
         @media #{$maximum-screen} { font-size: 32px }
         @media #{$extra-screen} { font-size: 34px }
     }
-    .content-wrapper {
+    .data-wrapper {
         padding: 3px;
         .chart-wrapper {
             width: 50%;
@@ -109,12 +107,10 @@ analyze, detail {
             }
         }
     }
-
     .response-key {
         line-height: 32px;
         .key { font-size: 15.5px }
     }
-
     &#issuedYear_agg {
         .info-icons:before { content: "done_all date_range" }
         .title-wrapper:before { content: "核准/公告年度分析" }
@@ -212,8 +208,5 @@ analyze, detail {
     &#mainLocarno_agg {
         .info-icons:before { content: "star flare" }
         .title-wrapper:before { content: "主國際工業設計分類號分析" }
-    }
-    &.waves-effect.waves-main .waves-ripple {
-      background-color: rgba(116, 183, 63, 0.65);
     }
 }

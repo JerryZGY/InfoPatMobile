@@ -1,13 +1,15 @@
-<div class="result-wrapper" *ngIf="isSearched" [ngClass]="{active:isSearched}">
+<div class="result-wrapper">
     <nav>
         <a class="material-icons center waves-effect waves-light back" (click)="back()">navigate_before</a>
     </nav>
+    <div class="detail-wrapper" style="display:none">
+        <detail id="{{detailData?.type}}" [content]="detailData?.content"></detail>
+    </div>
     <div class="analyze-wrapper">
-        <analyze *ngFor="#agg of aggs" id="{{agg.key}}" [type]="agg.key" [content]="agg.val" (click)="showDetail(agg.key)" [ngClass]="{active:!isDetail}"></analyze>
-        <detail id="{{detailType}}" [content]="detailContent" [ngClass]="{active:isDetail}"></detail>
+        <analyze *ngFor="#agg of aggs" id="{{agg.key}}" [type]="agg.key" [content]="agg.val" (click)="showDetail(agg.key)"></analyze>
     </div>
 </div>
-<div class="content-wrapper center" [ngClass]="{active:isSearched, focus:isFocus, searching:isSearching}">
+<div class="content-wrapper" [ngClass]="{focus:isFocus, searching:isSearching}">
     <div class="logo"></div>
     <form class="search-wrapper" (submit)="search(text.value)">
         <div class="material-icons">search</div>
@@ -18,9 +20,9 @@
         </div>
     </form>
     <div class="flag-wrapper" [ngClass]="{active:isActive}">
-        <i class="flag-icon flag-icon-tw waves-effect waves-light" [ngClass]="{deactivate:tw}" (click)="tw=!tw"></i>
-        <i class="flag-icon flag-icon-cn waves-effect waves-light" [ngClass]="{deactivate:cn}" (click)="cn=!cn"></i>
-        <i class="flag-icon flag-icon-us waves-effect waves-light" [ngClass]="{deactivate:us}" (click)="us=!us"></i>
+        <i class="flag-icon flag-icon-tw waves-effect waves-light" [ngClass]="{active:tw}" (click)="tw=!tw"></i>
+        <i class="flag-icon flag-icon-cn waves-effect waves-light" [ngClass]="{active:cn}" (click)="cn=!cn"></i>
+        <i class="flag-icon flag-icon-us waves-effect waves-light" [ngClass]="{active:us}" (click)="us=!us"></i>
     </div>
 </div>
 <div class="overlay" [ngClass]="{active:isActive}" (click)="isActive=false"></div>

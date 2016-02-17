@@ -1,7 +1,8 @@
 @import "lib/scss/common";
 main {
     .result-wrapper {
-        @extend .fadable;
+        opacity: 0;
+        display: none;
         min-width: 296px;
         nav {
             z-index: 1;
@@ -17,25 +18,20 @@ main {
                 line-height: $primary-size;
             }
         }
-        .analyze-wrapper {
+        .analyze-wrapper, .detail-wrapper {
             top: 64px;
-            height: 0;
             z-index: 0;
             width: 100%;
-            overflow: hidden;
+            height: calc(100% - 64px);
+            overflow: auto;
             position: absolute;
         }
-        &.active > .analyze-wrapper { height: auto }
     }
-    > .content-wrapper {
+    .content-wrapper {
         opacity: 1;
+        text-align: center;
         margin: 25px auto 0;
         @include user-select(none);
-        @include transition(opacity .3s ease-in-out, width .2s ease-in-out, height .2s ease-in-out);
-        &.active {
-            opacity: 0;
-            z-index: -1;
-        }
         @include stretch(0, 0, 0, 0);
         &.focus .search-wrapper {
             background-color: white;
@@ -58,7 +54,6 @@ main {
             background-repeat: no-repeat;
             background-image: url("logo.png");
             background-position: center center;
-            @include transition(width .2s ease-in-out, height .2s ease-in-out);
         }
         .search-wrapper {
             height: 48px;
@@ -107,7 +102,6 @@ main {
             @include display-flex;
             justify-content: center;
             @include flex-flow(row wrap);
-            @include transition(width .2s ease-in-out, height .2s ease-in-out);
             &.active {
                 z-index: 999;
                 position: fixed;
@@ -115,16 +109,17 @@ main {
                 i { pointer-events: auto }
             }
             i {
-                width: $primary-size;
-                height: 48px;
                 margin: 5px;
+                opacity: .1;
+                height: 48px;
+                width: $primary-size;
                 pointer-events: none;
-                &.deactivate { opacity: .1 }
+                &.active { opacity: 1 }
                 &.flag-icon-eu { background-image: url("eu.svg") }
             }
         }
     }
-    > .content-wrapper, > .content-wrapper .flag-wrapper {
+    .content-wrapper, .content-wrapper .flag-wrapper {
         @media #{$minimum-screen} {
             width: 296px;
             .logo { height: 160px }
