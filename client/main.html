@@ -1,14 +1,3 @@
-<div class="result-wrapper">
-    <nav>
-        <a class="material-icons center waves-effect waves-light back" (click)="back()">navigate_before</a>
-    </nav>
-    <div class="detail-wrapper" style="display:none">
-        <detail id="{{detailData?.type}}" [content]="detailData?.content"></detail>
-    </div>
-    <div class="analyze-wrapper">
-        <analyze *ngFor="#agg of aggs" id="{{agg.key}}" [type]="agg.key" [content]="agg.val" (click)="showDetail(agg.key)"></analyze>
-    </div>
-</div>
 <div class="content-wrapper" [ngClass]="{focus:isFocus, searching:isSearching}">
     <div class="logo"></div>
     <form class="search-wrapper" (submit)="search(text.value)">
