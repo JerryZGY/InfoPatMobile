@@ -11,18 +11,7 @@ export class Main {
     constructor(private router: Router) {}
 
     search(text) {
-        if (text) {
-            $("#search").blur();
-            this.isSearching = true;
-            let token = Random.id();
-            Meteor.call("search", text, this.countryCheck(), token, () => {
-                TweenLite.to("main", .5, {
-                    opacity: "0",
-                    ease: Quart.easeOut,
-                    onComplete: () => this.router.navigate(['Result', {token: token}])
-                });
-            });
-        }
+
     }
 
     countryCheck(): string[] {
